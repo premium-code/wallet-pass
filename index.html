@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Wallet Pass</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* THE DESIGN: Makes it look like a mobile pass */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .pass-container { background: #fff; width: 320px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .header { background-color: #000; color: #fff; padding: 20px; text-align: center; }
+        .logo { font-weight: bold; font-size: 18px; text-transform: uppercase; letter-spacing: 2px; }
+        .content { padding: 20px; }
+        .row { display: flex; justify-content: space-between; margin-bottom: 15px; }
+        .label { font-size: 10px; color: #888; text-transform: uppercase; }
+        .value { font-size: 16px; font-weight: 600; color: #333; }
+        .barcode { background: #eee; height: 60px; margin-top: 20px; display: flex; justify-content: center; align-items: center; color: #aaa; font-family: monospace; letter-spacing: 5px; }
+    </style>
+</head>
+<body>
+
+    <div class="pass-container">
+        <div class="header">
+            <div class="logo">VIP ACCESS</div>
+        </div>
+        <div class="content">
+            <div class="row">
+                <div>
+                    <div class="label">Guest Name</div>
+                    <div class="value" id="name-display">Loading...</div>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <div class="label">Section</div>
+                    <div class="value" id="section-display">--</div>
+                </div>
+                <div>
+                    <div class="label">Seat</div>
+                    <div class="value" id="seat-display">--</div>
+                </div>
+            </div>
+            <div class="barcode" id="id-display">||||||||||||</div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Get the URL parameters
+        const params = new URLSearchParams(window.location.search);
+
+        // 2. Define the fields we want to look for
+        const guestName = params.get('name') || 'Guest';
+        const section = params.get('section') || 'GA';
+        const seat = params.get('seat') || 'N/A';
+        const id = params.get('id') || '0000';
+
+        // 3. Inject the data into the HTML
+        document.getElementById('name-display').innerText = guestName;
+        document.getElementById('section-display').innerText = section;
+        document.getElementById('seat-display').innerText = seat;
+        document.getElementById('id-display').innerText = `|| ${id} ||`;
+    </script>
+
+</body>
+</html>

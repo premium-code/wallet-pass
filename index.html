@@ -1,64 +1,194 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Wallet Pass</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Ticket</title>
     <style>
-        /* THE DESIGN: Makes it look like a mobile pass */
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .pass-container { background: #fff; width: 320px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .header { background-color: #000; color: #fff; padding: 20px; text-align: center; }
-        .logo { font-weight: bold; font-size: 18px; text-transform: uppercase; letter-spacing: 2px; }
-        .content { padding: 20px; }
-        .row { display: flex; justify-content: space-between; margin-bottom: 15px; }
-        .label { font-size: 10px; color: #888; text-transform: uppercase; }
-        .value { font-size: 16px; font-weight: 600; color: #333; }
-        .barcode { background: #eee; height: 60px; margin-top: 20px; display: flex; justify-content: center; align-items: center; color: #aaa; font-family: monospace; letter-spacing: 5px; }
+        /* RESET & FONTS */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* TOP BLUE EVENT HEADER */
+        .top-bar {
+            background-color: #026cdf; /* Ticketmaster Blue */
+            color: white;
+            text-align: center;
+            padding: 15px 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .event-title { font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .event-date { font-size: 10px; font-weight: 400; opacity: 0.9; }
+
+        /* MAIN CARD CONTAINER */
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* THE TICKET CARD */
+        .ticket-card {
+            width: 100%;
+            max-width: 340px; /* Mobile standard width */
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        /* CARD HEADER (BLUE AREA) */
+        .card-header {
+            background-color: #026cdf;
+            color: white;
+            padding-top: 15px;
+        }
+        .admission-type {
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        .info-icon {
+            border: 1px solid white;
+            border-radius: 50%;
+            width: 14px;
+            height: 14px;
+            font-size: 10px;
+            line-height: 14px;
+            display: inline-block;
+        }
+
+        /* SEAT INFO GRID */
+        .seat-grid {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px 20px 20px;
+        }
+        .seat-item { text-align: center; width: 33%; }
+        .seat-label { font-size: 10px; text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
+        .seat-value { font-size: 22px; font-weight: 800; }
+
+        /* SUB-HEADER (e.g., GA FLR STANDING) */
+        .sub-location {
+            background-color: #005bb5; /* Slightly darker blue */
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 8px 0;
+        }
+
+        /* CARD BODY (White Area) */
+        .card-body {
+            padding: 40px 20px;
+            height: 250px; /* Fixed height to mimic the screenshot */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .barcode-message {
+            color: #555;
+            font-size: 12px;
+            line-height: 1.5;
+            max-width: 220px;
+        }
+
+        /* PAGINATION DOTS/ARROWS */
+        .pagination {
+            margin-top: 20px;
+            color: #888;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .arrow { cursor: pointer; font-size: 18px; }
+
     </style>
 </head>
 <body>
 
-    <div class="pass-container">
-        <div class="header">
-            <div class="logo">VIP ACCESS</div>
+    <div class="top-bar">
+        <div class="event-title" id="event-name">Event Name Loading...</div>
+        <div class="event-date" id="event-details">...</div>
+    </div>
+
+    <div class="main-container">
+        <div class="ticket-card">
+            <div class="card-header">
+                <div class="admission-type">
+                    <span id="admission-type">Standard Admission</span>
+                    <span class="info-icon">i</span>
+                </div>
+                
+                <div class="seat-grid">
+                    <div class="seat-item">
+                        <div class="seat-label">SEC</div>
+                        <div class="seat-value" id="sec-val">--</div>
+                    </div>
+                    <div class="seat-item">
+                        <div class="seat-label">ROW</div>
+                        <div class="seat-value" id="row-val">--</div>
+                    </div>
+                    <div class="seat-item">
+                        <div class="seat-label">SEAT</div>
+                        <div class="seat-value" id="seat-val">--</div>
+                    </div>
+                </div>
+
+                <div class="sub-location" id="location-sub">General Admission</div>
+            </div>
+
+            <div class="card-body">
+                <div class="barcode-message">
+                    PLEASE REFRESH PAGE 24 HOURS BEFORE EVENT TO VIEW BARCODE
+                </div>
+            </div>
         </div>
-        <div class="content">
-            <div class="row">
-                <div>
-                    <div class="label">Guest Name</div>
-                    <div class="value" id="name-display">Loading...</div>
-                </div>
-            </div>
-            <div class="row">
-                <div>
-                    <div class="label">Section</div>
-                    <div class="value" id="section-display">--</div>
-                </div>
-                <div>
-                    <div class="label">Seat</div>
-                    <div class="value" id="seat-display">--</div>
-                </div>
-            </div>
-            <div class="barcode" id="id-display">||||||||||||</div>
+
+        <div class="pagination">
+            <span class="arrow">&lt;</span>
+            <span>1 of 3</span>
+            <span class="arrow">&gt;</span>
         </div>
     </div>
 
     <script>
-        // 1. Get the URL parameters
+        // 1. Grab the data from the URL
         const params = new URLSearchParams(window.location.search);
 
-        // 2. Define the fields we want to look for
-        const guestName = params.get('name') || 'Guest';
-        const section = params.get('section') || 'GA';
-        const seat = params.get('seat') || 'N/A';
-        const id = params.get('id') || '0000';
+        // 2. Define your defaults (what shows if the link is empty)
+        const eventName = params.get('event') || 'YUNGBLUD: IDOLS - THE WORLD TOUR';
+        const eventDate = params.get('date') || 'Sat, May 09, 2026, 8:00 PM - Armory';
+        const sec = params.get('sec') || 'GA13';
+        const row = params.get('row') || 'GA1';
+        const seat = params.get('seat') || '88';
+        const locationSub = params.get('loc') || 'GA FLR STANDING';
+        const admission = params.get('type') || 'Standard Admission';
 
-        // 3. Inject the data into the HTML
-        document.getElementById('name-display').innerText = guestName;
-        document.getElementById('section-display').innerText = section;
-        document.getElementById('seat-display').innerText = seat;
-        document.getElementById('id-display').innerText = `|| ${id} ||`;
+        // 3. Put the data into the HTML
+        document.getElementById('event-name').textContent = eventName;
+        document.getElementById('event-details').textContent = eventDate;
+        document.getElementById('sec-val').textContent = sec;
+        document.getElementById('row-val').textContent = row;
+        document.getElementById('seat-val').textContent = seat;
+        document.getElementById('location-sub').textContent = locationSub;
+        document.getElementById('admission-type').textContent = admission;
     </script>
-
 </body>
 </html>

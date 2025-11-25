@@ -1,13 +1,3 @@
-You should replace your **entire** `index.html` file with the code below.
-
-To answer "where do I put this":
-
-  * The **HTML part** (`<div id="wallet-container">...`) goes inside the `<body>`, just below the pagination controls.
-  * The **JavaScript part** (`function renderTicket...`) goes inside the `<script>` tags at the bottom, replacing the old `renderTicket` function.
-
-Here is the **complete, final code** with everything integrated. You can copy-paste this directly into your `index.html` file on GitHub.
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -257,7 +247,7 @@ Here is the **complete, final code** with everything integrated. You can copy-pa
 
             try {
                 // FETCH THE DATABASE
-                // IMPORTANT: If you renamed your file to a secret name (e.g., db-xyz.json), change 'tickets.json' below!
+                // IMPORTANT: Ensure this filename matches exactly what is on GitHub (e.g. 'tickets.json' or 'db-xyz.json')
                 const response = await fetch('tickets.json'); 
                 const allOrdersData = await response.json(); 
 
@@ -336,4 +326,3 @@ Here is the **complete, final code** with everything integrated. You can copy-pa
     </script>
 </body>
 </html>
-```

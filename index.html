@@ -138,12 +138,9 @@
             }
         }
 
-        // --- MODE A: DATABASE LOGIC ---
         async function startDatabaseMode(params) {
             currentOrderId = params.get('ord');
             currentTicketId = params.get('id');
-
-            // Show Pagination Buttons
             document.getElementById('nav-container').style.display = 'flex';
 
             if (!currentOrderId) {
@@ -152,17 +149,23 @@
             }
 
             try {
-                // Change 'tickets.json' to your secret filename if needed
-                const filename = 'bc7a3d75-ee17-4816-afe4-4ae2d20ad056.json';
-                const response = await fetch(filename + '?t=' + Date.now());
-
+                // --- THE CACHE BUSTER FIX ---
+                // We append ?v=TIMESTAMP to the filename. 
+                // This forces the browser to ignore the cache and get the fresh file.
+                const dbFileName = 'bc7a3d75-ee17-4816-afe4-4ae2d20ad056.json';
+                const response = await fetch(dbFileName + '?v=' + new Date().getTime());
+                
+                if (!response.ok) throw new Error("Database file not found");
+                
+                const allOrdersData = await response.json();
                 currentOrderTickets = allOrdersData[currentOrderId];
 
                 if (!currentOrderTickets) {
                     document.getElementById('page-counter').textContent = "Order Not Found";
                     return;
                 }
-
+                
+                // ... rest of your logic ...
                 let initialTicket = currentOrderTickets.find(t => t.id === currentTicketId);
                 if (!initialTicket) {
                     initialTicket = currentOrderTickets[0];
@@ -174,7 +177,8 @@
 
             } catch (error) {
                 console.error(error);
-                document.getElementById('page-counter').textContent = "Error Loading Data";
+                // Better error message for the user
+                document.getElementById('page-counter').textContent = "Connection Error: Try Refreshing";
             }
         }
 
@@ -239,5 +243,6 @@
     </script>
 </body>
 </html>
+
 
 

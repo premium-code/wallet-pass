@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secured Ticket Access</title>
     <style>
-        /* --- CSS STYLES (Same as before) --- */
+        /* --- CSS STYLES --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f4f4f4; color: #333; display: flex; flex-direction: column; min-height: 100vh; }
         
@@ -36,10 +36,6 @@
         .pagination button { background-color: #026cdf; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s; }
         .pagination button:disabled { background-color: #ccc; cursor: not-allowed; }
         .pagination button:hover:not(:disabled) { background-color: #005bb5; }
-
-        /* Wallet Button */
-        .apple-wallet-img { transition: transform 0.2s; }
-        .apple-wallet-img:hover { transform: scale(1.05); }
     </style>
 </head>
 <body>
@@ -84,15 +80,6 @@
             <span id="page-counter">Loading...</span>
             <button id="next-btn">Next &gt;</button>
         </div>
-
-        <div id="wallet-container" style="display: none; margin-top: 20px; text-align: center;">
-            <a id="wallet-link" href="#" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Add_to_Apple_Wallet_badge.svg" 
-                     alt="Add to Apple Wallet" 
-                     class="apple-wallet-img"
-                     style="height: 42px;">
-            </a>
-        </div>
     </div>
 
     <script>
@@ -101,7 +88,7 @@
         let currentTicketId = null;
         let currentOrderId = null;
 
-        // --- RENDER FUNCTION (Used by both modes) ---
+        // --- RENDER FUNCTION ---
         function renderTicket(ticket) {
             document.getElementById('event-name').textContent = ticket.event || 'Event Name';
             document.getElementById('event-details').textContent = ticket.date || 'Date TBD';
@@ -110,16 +97,6 @@
             document.getElementById('seat-val').textContent = ticket.seat || '--';
             document.getElementById('location-sub').textContent = ticket.loc || 'General Admission';
             document.getElementById('admission-type').textContent = ticket.type || 'Standard Admission';
-
-            // Handle Wallet Button
-            const walletContainer = document.getElementById('wallet-container');
-            const walletLink = document.getElementById('wallet-link');
-            if (ticket.wallet_url) {
-                walletLink.href = ticket.wallet_url;
-                walletContainer.style.display = 'block';
-            } else {
-                walletContainer.style.display = 'none';
-            }
         }
 
         // --- HYBRID SYSTEM STARTUP ---
@@ -128,19 +105,20 @@
             
             // CHECK 1: Is there an ID? (Database Mode)
             if (params.get('id')) {
-                console.log("Starting DATABASE Mode...");
                 startDatabaseMode(params);
             } 
             // CHECK 2: No ID? (Direct URL Mode)
             else {
-                console.log("Starting DIRECT Mode...");
                 startDirectMode(params);
             }
         }
 
+        // --- MODE A: DATABASE LOGIC ---
         async function startDatabaseMode(params) {
             currentOrderId = params.get('ord');
             currentTicketId = params.get('id');
+
+            // Show Pagination Buttons
             document.getElementById('nav-container').style.display = 'flex';
 
             if (!currentOrderId) {
@@ -149,14 +127,13 @@
             }
 
             try {
-                // --- THE CACHE BUSTER FIX ---
-                // We append ?v=TIMESTAMP to the filename. 
-                // This forces the browser to ignore the cache and get the fresh file.
+                // CACHE BUSTER: Forces fresh data every time
+                // Using your specific filename
                 const dbFileName = 'bc7a3d75-ee17-4816-afe4-4ae2d20ad056.json';
                 const response = await fetch(dbFileName + '?v=' + new Date().getTime());
                 
-                if (!response.ok) throw new Error("Database file not found");
-                
+                if (!response.ok) throw new Error("Database file not found (404)");
+
                 const allOrdersData = await response.json();
                 currentOrderTickets = allOrdersData[currentOrderId];
 
@@ -164,8 +141,7 @@
                     document.getElementById('page-counter').textContent = "Order Not Found";
                     return;
                 }
-                
-                // ... rest of your logic ...
+
                 let initialTicket = currentOrderTickets.find(t => t.id === currentTicketId);
                 if (!initialTicket) {
                     initialTicket = currentOrderTickets[0];
@@ -177,17 +153,15 @@
 
             } catch (error) {
                 console.error(error);
-                // Better error message for the user
-                document.getElementById('page-counter').textContent = "Connection Error: Try Refreshing";
+                document.getElementById('page-counter').textContent = "Error: " + error.message;
             }
         }
 
         // --- MODE B: DIRECT URL LOGIC ---
         function startDirectMode(params) {
-            // Hide Pagination Buttons (No cycling in direct mode)
+            // Hide buttons since there is no order list to cycle through
             document.getElementById('nav-container').style.display = 'none';
 
-            // Construct ticket object from URL parameters
             const directTicket = {
                 event: params.get('event'),
                 date: params.get('date'),
@@ -195,14 +169,13 @@
                 row: params.get('row'),
                 seat: params.get('seat'),
                 loc: params.get('loc'),
-                type: params.get('type'),
-                wallet_url: params.get('wallet') // You can even pass a wallet link!
+                type: params.get('type')
             };
 
             renderTicket(directTicket);
         }
 
-        // --- NAVIGATION LOGIC (Only used in DB Mode) ---
+        // --- NAVIGATION LOGIC ---
         function setupNavigation() {
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
@@ -243,6 +216,3 @@
     </script>
 </body>
 </html>
-
-
-

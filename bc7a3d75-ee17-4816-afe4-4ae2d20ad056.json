@@ -1,5 +1,5 @@
 {
-"ORD-4952": [
+  "ORD-4952": [
     {
       "id": "1001",
       "event": "The Eras Tour",
@@ -7,11 +7,9 @@
       "row": "1",
       "seat": "12",
       "type": "VIP Package",
-      "wallet_url": "https://secured-ticket-access.com/ticket-1001.pkpass" 
+      "wallet_url": "https://secured-ticket-access.com/ticket-1001.pkpass"
     }
-]
   ],
-{
   "ORD-S1ZKLDSSZ0": [
     {
       "id": "S13",
@@ -46,25 +44,4 @@
     {
       "id": "S16",
       "event": "Live Between The Hedges",
-      "date": "Sat, Apr 25, 2026 • 12:00 AM",
-      "sec": "307",
-      "row": "23",
-      "seat": "16",
-      "loc": "Sanford Stadium",
-      "type": "Standard Admission"
-    },
-    {
-      "id": "S17",
-      "event": "Live Between The Hedges",
-      "date": "Sat, Apr 25, 2026 • 12:00 AM",
-      "sec": "307",
-      "row": "23",
-      "seat": "17",
-      "loc": "Sanford Stadium",
-      "type": "Standard Admission"
-    }
-  ]
-}
-
-
-
+      "date": "Sat, Apr 25, 2026 • 12:00 AM

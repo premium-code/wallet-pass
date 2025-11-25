@@ -1,6 +1,11 @@
-Here is your complete, updated `index.html` file. I have integrated the **Order ID system** we built earlier with the new **Apple Wallet Button** logic.
+You should replace your **entire** `index.html` file with the code below.
 
-You can copy this entire block and paste it into your `index.html` file on GitHub.
+To answer "where do I put this":
+
+  * The **HTML part** (`<div id="wallet-container">...`) goes inside the `<body>`, just below the pagination controls.
+  * The **JavaScript part** (`function renderTicket...`) goes inside the `<script>` tags at the bottom, replacing the old `renderTicket` function.
+
+Here is the **complete, final code** with everything integrated. You can copy-paste this directly into your `index.html` file on GitHub.
 
 ```html
 <!DOCTYPE html>
@@ -252,7 +257,7 @@ You can copy this entire block and paste it into your `index.html` file on GitHu
 
             try {
                 // FETCH THE DATABASE
-                // Note: Change 'tickets.json' to your secret filename if you renamed it!
+                // IMPORTANT: If you renamed your file to a secret name (e.g., db-xyz.json), change 'tickets.json' below!
                 const response = await fetch('tickets.json'); 
                 const allOrdersData = await response.json(); 
 

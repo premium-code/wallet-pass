@@ -1,29 +1,30 @@
 {
-  "1001": {
-    "event": "The Eras Tour",
-    "date": "Fri, May 26, 7:00 PM - Stadium",
-    "sec": "VIP",
-    "row": "1",
-    "seat": "12",
-    "type": "VIP Package",
-    "loc": "Floor Seating"
-  },
-  "1002": {
-    "event": "NBA Finals: Game 7",
-    "date": "Sun, June 12, 8:00 PM - Arena",
-    "sec": "104",
-    "row": "B",
-    "seat": "4",
-    "type": "Standard Admission",
-    "loc": "Lower Bowl"
-  },
-  "A14B": {
-    "event": "Comedy Special",
-    "date": "Sat, Aug 10, 9:00 PM - Theater",
-    "sec": "GA",
-    "row": "--",
-    "seat": "--",
-    "type": "General Admission",
-    "loc": "Standing Room"
-  }
+  "ORD-4952": [ <--- This is Order 1
+    {
+      "id": "1001",
+      "event": "The Eras Tour",
+      "sec": "VIP",
+      "row": "1",
+      "seat": "12",
+      "type": "VIP Package"
+    },
+    {
+      "id": "1002",
+      "event": "The Eras Tour",
+      "sec": "VIP",
+      "row": "1",
+      "seat": "13",
+      "type": "VIP Package"
+    }
+  ],
+  "ORD-9800": [ <--- This is Order 2 (Separate Cycle)
+    {
+      "id": "A14B",
+      "event": "NBA Finals: Game 7",
+      "sec": "104",
+      "row": "B",
+      "seat": "4",
+      "type": "Standard Admission"
+    }
+  ]
 }

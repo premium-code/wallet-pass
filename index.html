@@ -1,3 +1,8 @@
+Here is your complete, updated `index.html` file. I have integrated the **Order ID system** we built earlier with the new **Apple Wallet Button** logic.
+
+You can copy this entire block and paste it into your `index.html` file on GitHub.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -133,12 +138,20 @@
         .pagination button:hover:not(:disabled) {
             background-color: #005bb5;
         }
+
+        /* WALLET BUTTON STYLES */
+        .apple-wallet-img {
+            transition: transform 0.2s;
+        }
+        .apple-wallet-img:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
 
     <div class="top-bar">
-        <div class="event-title" id="event-name">Event Name Loading...</div>
+        <div class="event-title" id="event-name">Loading...</div>
         <div class="event-date" id="event-details">...</div>
     </div>
 
@@ -180,117 +193,142 @@
             <span id="page-counter">Loading...</span>
             <button id="next-btn">Next &gt;</button>
         </div>
+
+        <div id="wallet-container" style="display: none; margin-top: 20px; text-align: center;">
+            <a id="wallet-link" href="#" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Add_to_Apple_Wallet_badge.svg" 
+                     alt="Add to Apple Wallet" 
+                     class="apple-wallet-img"
+                     style="height: 42px;">
+            </a>
+        </div>
     </div>
 
-<script>
-    let currentOrderTickets = []; // Stores all tickets for the currently loaded order
-    let currentTicketId = null; 
-    let currentOrderId = null; // New variable to track the order being viewed
+    <script>
+        // GLOBAL VARIABLES
+        let currentOrderTickets = []; // Stores only the tickets for the current order
+        let currentTicketId = null; 
+        let currentOrderId = null; 
 
-    // Function to find a ticket by ID within the current order's array
-    function findTicket(id) {
-        return currentOrderTickets.find(ticket => ticket.id === id);
-    }
-
-    // Function to update the page UI based on a ticket object
-    function renderTicket(ticket) {
-        // Render functions remain the same
-        document.getElementById('event-name').textContent = ticket.event;
-        document.getElementById('event-details').textContent = ticket.date;
-        document.getElementById('sec-val').textContent = ticket.sec;
-        document.getElementById('row-val').textContent = ticket.row;
-        document.getElementById('seat-val').textContent = ticket.seat;
-        document.getElementById('location-sub').textContent = ticket.loc;
-        document.getElementById('admission-type').textContent = ticket.type;
-    }
-
-    async function setupSystem() {
-        const params = new URLSearchParams(window.location.search);
-        currentOrderId = params.get('ord'); // Get the Order ID
-        currentTicketId = params.get('id'); // Get the specific Ticket ID
-
-        if (!currentOrderId) {
-            document.getElementById('page-counter').textContent = "Error: Order ID Missing";
-            return;
+        // Helper: Find ticket by ID in current order
+        function findTicket(id) {
+            return currentOrderTickets.find(ticket => ticket.id === id);
         }
 
-        try {
-            const response = await fetch('bc7a3d75-ee17-4816-afe4-4ae2d20ad056.json');
-            const allOrdersData = await response.json(); 
+        // --- CORE FUNCTION: RENDER TICKET & WALLET BUTTON ---
+        function renderTicket(ticket) {
+            // 1. Update Text Fields
+            document.getElementById('event-name').textContent = ticket.event;
+            document.getElementById('event-details').textContent = ticket.date;
+            document.getElementById('sec-val').textContent = ticket.sec;
+            document.getElementById('row-val').textContent = ticket.row;
+            document.getElementById('seat-val').textContent = ticket.seat;
+            document.getElementById('location-sub').textContent = ticket.loc;
+            document.getElementById('admission-type').textContent = ticket.type;
 
-            // 1. Get ONLY the tickets for the specified Order ID
-            currentOrderTickets = allOrdersData[currentOrderId]; 
+            // 2. Wallet Button Logic
+            const walletContainer = document.getElementById('wallet-container');
+            const walletLink = document.getElementById('wallet-link');
 
-            if (!currentOrderTickets || currentOrderTickets.length === 0) {
-                document.getElementById('page-counter').textContent = "Error: Order Not Found";
+            if (ticket.wallet_url) {
+                walletLink.href = ticket.wallet_url;
+                walletContainer.style.display = 'block'; // Show button
+            } else {
+                walletContainer.style.display = 'none'; // Hide button
+            }
+        }
+
+        // --- SYSTEM SETUP ---
+        async function setupSystem() {
+            const params = new URLSearchParams(window.location.search);
+            currentOrderId = params.get('ord'); // Get Order ID
+            currentTicketId = params.get('id'); // Get Ticket ID
+
+            // Error check: Missing Order ID
+            if (!currentOrderId) {
+                document.getElementById('page-counter').textContent = "Error: Order ID Missing";
                 return;
             }
 
-            // 2. Find the specific ticket to start with
-            let initialTicket = findTicket(currentTicketId);
-            
-            // If the URL ID is invalid or missing, default to the first ticket in the order
-            if (!initialTicket) {
-                initialTicket = currentOrderTickets[0];
-                currentTicketId = initialTicket.id; // Update ID to the first ticket
+            try {
+                // FETCH THE DATABASE
+                // Note: Change 'tickets.json' to your secret filename if you renamed it!
+                const response = await fetch('tickets.json'); 
+                const allOrdersData = await response.json(); 
+
+                // 1. Get tickets for this specific Order ID
+                currentOrderTickets = allOrdersData[currentOrderId]; 
+
+                if (!currentOrderTickets || currentOrderTickets.length === 0) {
+                    document.getElementById('page-counter').textContent = "Error: Order Not Found";
+                    return;
+                }
+
+                // 2. Find the specific ticket to start with
+                let initialTicket = findTicket(currentTicketId);
+                
+                // If invalid ID, default to first ticket
+                if (!initialTicket) {
+                    initialTicket = currentOrderTickets[0];
+                    currentTicketId = initialTicket.id; 
+                }
+
+                // 3. Render and Setup Navigation
+                renderTicket(initialTicket);
+                setupNavigation();
+
+            } catch (error) {
+                console.error("Error setting up ticket system:", error);
+                document.getElementById('page-counter').textContent = "Error Loading Data";
             }
-
-            renderTicket(initialTicket);
-            setupNavigation();
-
-        } catch (error) {
-            console.error("Error setting up ticket system:", error);
-            document.getElementById('page-counter').textContent = "Error Loading Tickets";
         }
-    }
 
-    function setupNavigation() {
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const counter = document.getElementById('page-counter');
-        
-        // Find the index (position) of the current ticket within its order
-        let currentIndex = currentOrderTickets.findIndex(ticket => ticket.id === currentTicketId);
-        let totalTickets = currentOrderTickets.length;
-
-        // Update the counter text (e.g., 1 of 2)
-        counter.textContent = `${currentIndex + 1} of ${totalTickets}`;
-
-        // Enable/Disable buttons based on position within THIS order
-        prevBtn.disabled = currentIndex === 0;
-        nextBtn.disabled = currentIndex === totalTickets - 1;
-
-        // Attach listeners
-        prevBtn.onclick = () => navigate(-1);
-        nextBtn.onclick = () => navigate(1);
-    }
-
-    function navigate(direction) {
-        let currentIndex = currentOrderTickets.findIndex(ticket => ticket.id === currentTicketId);
-        let newIndex = currentIndex + direction;
-
-        // Check boundaries
-        if (newIndex >= 0 && newIndex < currentOrderTickets.length) {
-            const newTicket = currentOrderTickets[newIndex];
-            const newTicketId = newTicket.id;
+        // --- NAVIGATION LOGIC ---
+        function setupNavigation() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const counter = document.getElementById('page-counter');
             
-            // 1. Update the URL: crucial to keep both 'ord' and 'id'
-            const newUrl = new URL(window.location);
-            newUrl.searchParams.set('ord', currentOrderId); // Keeps the order locked
-            newUrl.searchParams.set('id', newTicketId); 
-            
-            history.pushState(null, '', newUrl.toString());
+            // Calculate position
+            let currentIndex = currentOrderTickets.findIndex(ticket => ticket.id === currentTicketId);
+            let totalTickets = currentOrderTickets.length;
 
-            // 2. Update the UI
-            currentTicketId = newTicketId;
-            renderTicket(newTicket);
-            setupNavigation(); 
+            // Update Counter
+            counter.textContent = `${currentIndex + 1} of ${totalTickets}`;
+
+            // Button States
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === totalTickets - 1;
+
+            // Click Listeners
+            prevBtn.onclick = () => navigate(-1);
+            nextBtn.onclick = () => navigate(1);
         }
-    }
 
-    setupSystem();
-</script>
+        function navigate(direction) {
+            let currentIndex = currentOrderTickets.findIndex(ticket => ticket.id === currentTicketId);
+            let newIndex = currentIndex + direction;
+
+            if (newIndex >= 0 && newIndex < currentOrderTickets.length) {
+                const newTicket = currentOrderTickets[newIndex];
+                const newTicketId = newTicket.id;
+                
+                // Update URL without reloading
+                const newUrl = new URL(window.location);
+                newUrl.searchParams.set('ord', currentOrderId);
+                newUrl.searchParams.set('id', newTicketId); 
+                history.pushState(null, '', newUrl.toString());
+
+                // Update UI
+                currentTicketId = newTicketId;
+                renderTicket(newTicket);
+                setupNavigation(); 
+            }
+        }
+
+        // Start the engine
+        setupSystem();
+    </script>
 </body>
 </html>
-
-
+```

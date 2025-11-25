@@ -1,21 +1,15 @@
 {
-  "ORD-4952": [ <--- This is Order 1
+"ORD-4952": [
     {
       "id": "1001",
       "event": "The Eras Tour",
       "sec": "VIP",
       "row": "1",
       "seat": "12",
-      "type": "VIP Package"
-    },
-    {
-      "id": "1002",
-      "event": "The Eras Tour",
-      "sec": "VIP",
-      "row": "1",
-      "seat": "13",
-      "type": "VIP Package"
+      "type": "VIP Package",
+      "wallet_url": "https://secured-ticket-access.com/ticket-1001.pkpass" 
     }
+]
   ],
   "ORD-9800": [ <--- This is Order 2 (Separate Cycle)
     {
@@ -28,3 +22,4 @@
     }
   ]
 }
+

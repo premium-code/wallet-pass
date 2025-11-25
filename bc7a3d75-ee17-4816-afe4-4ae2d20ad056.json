@@ -44,4 +44,22 @@
     {
       "id": "S16",
       "event": "Live Between The Hedges",
-      "date": "Sat, Apr 25, 2026 • 12:00 AM
+      "date": "Sat, Apr 25, 2026 • 12:00 AM",
+      "sec": "307",
+      "row": "23",
+      "seat": "16",
+      "loc": "Sanford Stadium",
+      "type": "Standard Admission"
+    },
+    {
+      "id": "S17",
+      "event": "Live Between The Hedges",
+      "date": "Sat, Apr 25, 2026 • 12:00 AM",
+      "sec": "307",
+      "row": "23",
+      "seat": "17",
+      "loc": "Sanford Stadium",
+      "type": "Standard Admission"
+    }
+  ]
+}

@@ -220,7 +220,7 @@
       "wallet_url": "https://secured-ticket-access.com/passes/ticket-acb4b0ab-6aa2-4d27-859a-d840ec5093126.pkpass"
     }
   ],
-  "ORD-S1ZKLDSSZ0,S13,Live Between The Hedges,Sat, Apr 25 2026 • 12:00 AM,307,23,13,Sanford Stadium": [
+  "ORD-S1ZKLDSSZ0": [
     {
       "id": "S13",
       "event": "Live Between The Hedges",
@@ -231,9 +231,7 @@
       "loc": "Sanford Stadium",
       "type": "Standard Admission",
       "wallet_url": "https://secured-ticket-access.com/passes/ticket-S13.pkpass"
-    }
-  ],
-  "ORD-S1ZKLDSSZ0,S14,Live Between The Hedges,Sat, Apr 25 2026 • 12:00 AM,307,23,14,Sanford Stadium": [
+    },
     {
       "id": "S14",
       "event": "Live Between The Hedges",

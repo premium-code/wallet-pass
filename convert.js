@@ -39,7 +39,7 @@ try {
         const loc     = col[7] || "Sanford Stadium";
         
         // Generate the Links
-        const walletUrl = `https://secured-ticket-access.com/ticket-${id}.pkpass`;
+        const walletUrl = `https://secured-ticket-access.com/passes/ticket-${id}.pkpass`;
         const webUrl    = `https://secured-ticket-access.com/?ord=${orderId}&id=${id}`;
 
         // Add to Database JSON

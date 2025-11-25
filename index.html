@@ -113,4 +113,170 @@
             margin-top: 20px;
             display: flex;
             justify-content: space-between;
-            align-items
+            align-items: center;
+            width: 340px; 
+            font-size: 14px;
+        }
+        .pagination button {
+            background-color: #026cdf;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .pagination button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .pagination button:hover:not(:disabled) {
+            background-color: #005bb5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="event-title" id="event-name">Event Name Loading...</div>
+        <div class="event-date" id="event-details">...</div>
+    </div>
+
+    <div class="main-container">
+        <div class="ticket-card">
+            <div class="card-header">
+                <div class="admission-type">
+                    <span id="admission-type">Standard Admission</span>
+                    <span class="info-icon">i</span>
+                </div>
+                
+                <div class="seat-grid">
+                    <div class="seat-item">
+                        <div class="seat-label">SEC</div>
+                        <div class="seat-value" id="sec-val">--</div>
+                    </div>
+                    <div class="seat-item">
+                        <div class="seat-label">ROW</div>
+                        <div class="seat-value" id="row-val">--</div>
+                    </div>
+                    <div class="seat-item">
+                        <div class="seat-label">SEAT</div>
+                        <div class="seat-value" id="seat-val">--</div>
+                    </div>
+                </div>
+
+                <div class="sub-location" id="location-sub">General Admission</div>
+            </div>
+
+            <div class="card-body">
+                <div class="barcode-message">
+                    PLEASE REFRESH PAGE 24 HOURS BEFORE EVENT TO VIEW BARCODE
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <button id="prev-btn" disabled>&lt; Previous</button>
+            <span id="page-counter">Loading...</span>
+            <button id="next-btn">Next &gt;</button>
+        </div>
+    </div>
+
+    <script>
+        // These will store all ticket IDs and the full data globally
+        let allTicketKeys = [];
+        let currentTicketId = null;
+        let allTicketData = {}; // Store the entire JSON data here
+
+        // Function to update the page UI based on a ticket object
+        function renderTicket(ticket) {
+            document.getElementById('event-name').textContent = ticket.event;
+            document.getElementById('event-details').textContent = ticket.date;
+            document.getElementById('sec-val').textContent = ticket.sec;
+            document.getElementById('row-val').textContent = ticket.row;
+            document.getElementById('seat-val').textContent = ticket.seat;
+            document.getElementById('location-sub').textContent = ticket.loc;
+            document.getElementById('admission-type').textContent = ticket.type;
+        }
+
+        // Main function to load ticket and setup navigation
+        async function setupSystem() {
+            const params = new URLSearchParams(window.location.search);
+            currentTicketId = params.get('id');
+
+            try {
+                // 1. Fetch the JSON database
+                const response = await fetch('tickets.json');
+                allTicketData = await response.json(); // Store data globally
+                
+                // 2. Get all available ticket IDs (the keys of the JSON object)
+                allTicketKeys = Object.keys(allTicketData);
+                
+                // 3. Determine the starting ticket ID
+                if (!currentTicketId || !allTicketData[currentTicketId]) {
+                    // If no valid ID is provided, default to the first ticket
+                    currentTicketId = allTicketKeys[0];
+                }
+
+                // 4. Render the ticket and set up controls
+                if (currentTicketId) {
+                    renderTicket(allTicketData[currentTicketId]);
+                    setupNavigation();
+                } else {
+                     document.getElementById('page-counter').textContent = "No Tickets Found";
+                }
+
+            } catch (error) {
+                console.error("Error setting up ticket system:", error);
+                document.getElementById('page-counter').textContent = "Error Loading Tickets";
+            }
+        }
+
+        function setupNavigation() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const counter = document.getElementById('page-counter');
+            
+            // Find the index of the current ticket in the list of all tickets
+            let currentIndex = allTicketKeys.indexOf(currentTicketId);
+            let totalTickets = allTicketKeys.length;
+
+            // Update the counter text (e.g., 1 of 5)
+            counter.textContent = `${currentIndex + 1} of ${totalTickets}`;
+
+            // Enable/Disable buttons based on position
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === totalTickets - 1;
+
+            // Add event listeners for navigation (or re-attach them)
+            prevBtn.onclick = () => navigate(-1);
+            nextBtn.onclick = () => navigate(1);
+        }
+
+        function navigate(direction) {
+            let currentIndex = allTicketKeys.indexOf(currentTicketId);
+            let newIndex = currentIndex + direction;
+
+            // Check boundaries
+            if (newIndex >= 0 && newIndex < allTicketKeys.length) {
+                const newTicketId = allTicketKeys[newIndex];
+                
+                // 1. Update the URL parameter to reflect the new ticket ID
+                const newUrl = new URL(window.location);
+                newUrl.searchParams.set('id', newTicketId);
+                
+                // Use history.pushState to change the URL without reloading the page
+                history.pushState(null, '', newUrl.toString());
+
+                // 2. Update the global ID and re-render the UI
+                currentTicketId = newTicketId;
+                renderTicket(allTicketData[newTicketId]);
+                setupNavigation(); // Re-run to update the counter and button status
+            }
+        }
+
+        // Initialize the whole system when the page loads
+        setupSystem();
+    </script>
+</body>
+</html>

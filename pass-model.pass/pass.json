@@ -1,0 +1,40 @@
+{
+  "formatVersion": 1,
+  "passTypeIdentifier": "pass.com.securedticket.access",
+  "serialNumber": "99999", 
+  "teamIdentifier": "JASTCFKHR6",
+  "organizationName": "Secured Ticket Access",
+  "description": "Eras Tour Ticket",
+  "logoText": "SECURED PASS",
+  "foregroundColor": "rgb(255, 255, 255)",
+  "backgroundColor": "rgb(2, 108, 223)",
+  "labelColor": "rgb(200, 200, 200)",
+  "eventTicket": {
+    "primaryFields": [
+      {
+        "key": "event",
+        "label": "EVENT",
+        "value": "HARDCODED TEST"
+      }
+    ],
+    "secondaryFields": [
+      {
+        "key": "sec",
+        "label": "SECTION",
+        "value": "VIP"
+      },
+      {
+        "key": "seat",
+        "label": "SEAT",
+        "value": "12"
+      }
+    ],
+    "auxiliaryFields": [
+      {
+        "key": "loc",
+        "label": "LOCATION",
+        "value": "Main Floor"
+      }
+    ]
+  }
+}

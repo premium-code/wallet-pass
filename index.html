@@ -1,44 +1,116 @@
-<script>
-    async function loadTicket() {
-        // 1. Get the ID from the URL (e.g., ?id=1001)
-        const params = new URLSearchParams(window.location.search);
-        const ticketId = params.get('id');
-
-        // If no ID is provided, we can't load the ticket
-        if (!ticketId) {
-            console.log("No Ticket ID found in URL. Using defaults.");
-            // You might want to display a generic error message here
-            return;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secured Ticket Access</title>
+    <style>
+        /* RESET & FONTS */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        try {
-            // 2. Fetch the "database" file (Must be in the same folder)
-            const response = await fetch('tickets.json');
-            const data = await response.json();
-
-            // 3. Find the specific ticket using the ID from the URL
-            const ticket = data[ticketId];
-
-            if (ticket) {
-                // 4. Update the HTML elements with the data found
-                document.getElementById('event-name').textContent = ticket.event;
-                document.getElementById('event-details').textContent = ticket.date;
-                document.getElementById('sec-val').textContent = ticket.sec;
-                document.getElementById('row-val').textContent = ticket.row;
-                document.getElementById('seat-val').textContent = ticket.seat;
-                document.getElementById('location-sub').textContent = ticket.loc;
-                document.getElementById('admission-type').textContent = ticket.type;
-            } else {
-                // Handle case where ID is in URL but not in the JSON file
-                document.getElementById('event-name').textContent = "ERROR: TICKET NOT FOUND";
-            }
-
-        } catch (error) {
-            console.error("Error loading ticket database:", error);
-            document.getElementById('event-name').textContent = "ERROR: DATABASE ISSUE";
+        /* TOP BLUE EVENT HEADER */
+        .top-bar {
+            background-color: #026cdf; /* Ticketmaster Blue */
+            color: white;
+            text-align: center;
+            padding: 15px 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-    }
+        .event-title { font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .event-date { font-size: 10px; font-weight: 400; opacity: 0.9; }
 
-    // Run the function when the page loads
-    loadTicket();
-</script>
+        /* MAIN CARD CONTAINER */
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* THE TICKET CARD */
+        .ticket-card {
+            width: 100%;
+            max-width: 340px; 
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        /* CARD HEADER (BLUE AREA) */
+        .card-header {
+            background-color: #026cdf;
+            color: white;
+            padding-top: 15px;
+        }
+        .admission-type {
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        .info-icon {
+            border: 1px solid white;
+            border-radius: 50%;
+            width: 14px;
+            height: 14px;
+            font-size: 10px;
+            line-height: 14px;
+            display: inline-block;
+        }
+
+        /* SEAT INFO GRID */
+        .seat-grid {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px 20px 20px;
+        }
+        .seat-item { text-align: center; width: 33%; }
+        .seat-label { font-size: 10px; text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
+        .seat-value { font-size: 22px; font-weight: 800; }
+
+        /* SUB-HEADER (e.g., GA FLR STANDING) */
+        .sub-location {
+            background-color: #005bb5; /* Slightly darker blue */
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 8px 0;
+        }
+
+        /* CARD BODY (White Area) */
+        .card-body {
+            padding: 40px 20px;
+            height: 250px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .barcode-message {
+            color: #555;
+            font-size: 12px;
+            line-height: 1.5;
+            max-width: 220px;
+        }
+
+        /* PAGINATION CONTROLS */
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items

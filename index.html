@@ -5,33 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secured Ticket Access</title>
     <style>
-        /* --- CSS STYLES --- */
+        /* --- RESET & FONTS --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f4f4f4; color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f8f9fa; color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+
+        /* --- LANDING PAGE STYLES (Clean & Professional) --- */
+        #landing-page {
+            display: none; /* Hidden by default, JS will show it if needed */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 20px;
+        }
+
+        .landing-logo { font-size: 24px; font-weight: 700; letter-spacing: 1px; margin-bottom: 40px; text-transform: uppercase; }
+        .hero-box { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 40px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.2); max-width: 500px; width: 100%; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+        .hero-title { font-size: 28px; font-weight: 700; margin-bottom: 15px; }
+        .hero-text { font-size: 14px; color: #cbd5e1; line-height: 1.6; margin-bottom: 30px; }
+        .secure-badge { display: inline-flex; align-items: center; gap: 8px; background: #22c55e; color: #fff; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .lock-icon { width: 12px; height: 12px; fill: white; }
+
+        /* --- TICKET PAGE STYLES (Your existing Blue Design) --- */
+        #ticket-page { display: none; flex-direction: column; min-height: 100vh; } /* Hidden by default */
         
         .top-bar { background-color: #026cdf; color: white; text-align: center; padding: 15px 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .event-title { font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
         .event-date { font-size: 10px; font-weight: 400; opacity: 0.9; }
 
         .main-container { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
-        
         .ticket-card { width: 100%; max-width: 340px; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
-        
         .card-header { background-color: #026cdf; color: white; padding-top: 15px; }
         .admission-type { font-size: 12px; font-weight: 500; display: flex; justify-content: center; align-items: center; gap: 5px; margin-bottom: 15px; }
         .info-icon { border: 1px solid white; border-radius: 50%; width: 14px; height: 14px; font-size: 10px; line-height: 14px; display: inline-block; }
-        
         .seat-grid { display: flex; justify-content: space-between; padding: 0 20px 20px 20px; }
         .seat-item { text-align: center; width: 33%; }
         .seat-label { font-size: 10px; text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
         .seat-value { font-size: 22px; font-weight: 800; }
-        
         .sub-location { background-color: #005bb5; color: white; font-size: 11px; font-weight: 600; text-transform: uppercase; padding: 8px 0; }
-        
         .card-body { padding: 40px 20px; height: 250px; display: flex; align-items: center; justify-content: center; }
         .barcode-message { color: #555; font-size: 12px; line-height: 1.5; max-width: 220px; }
-
-        /* Navigation Buttons */
         .pagination { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; width: 340px; font-size: 14px; }
         .pagination button { background-color: #026cdf; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s; }
         .pagination button:disabled { background-color: #ccc; cursor: not-allowed; }
@@ -40,45 +56,63 @@
 </head>
 <body>
 
-    <div class="top-bar">
-        <div class="event-title" id="event-name">Loading...</div>
-        <div class="event-date" id="event-details">...</div>
+    <div id="landing-page">
+        <div class="landing-logo">SECURED TICKET ACCESS</div>
+        <div class="hero-box">
+            <div class="secure-badge">
+                <span>🔒</span> Verified Secure
+            </div>
+            <h1 class="hero-title">Ticket Portal</h1>
+            <p class="hero-text">
+                Welcome to the secure ticket transfer portal. To access your tickets, please click the personalized link provided in your confirmation email or SMS.
+            </p>
+            <p style="font-size: 12px; opacity: 0.5;">
+                Access is restricted to verified ticket holders only.
+            </p>
+        </div>
     </div>
 
-    <div class="main-container">
-        <div class="ticket-card">
-            <div class="card-header">
-                <div class="admission-type">
-                    <span id="admission-type">Standard Admission</span>
-                    <span class="info-icon">i</span>
-                </div>
-                <div class="seat-grid">
-                    <div class="seat-item">
-                        <div class="seat-label">SEC</div>
-                        <div class="seat-value" id="sec-val">--</div>
-                    </div>
-                    <div class="seat-item">
-                        <div class="seat-label">ROW</div>
-                        <div class="seat-value" id="row-val">--</div>
-                    </div>
-                    <div class="seat-item">
-                        <div class="seat-label">SEAT</div>
-                        <div class="seat-value" id="seat-val">--</div>
-                    </div>
-                </div>
-                <div class="sub-location" id="location-sub">General Admission</div>
-            </div>
-            <div class="card-body">
-                <div class="barcode-message">
-                    PLEASE REFRESH PAGE 24 HOURS BEFORE EVENT TO VIEW BARCODE
-                </div>
-            </div>
+    <div id="ticket-page">
+        <div class="top-bar">
+            <div class="event-title" id="event-name">Loading...</div>
+            <div class="event-date" id="event-details">...</div>
         </div>
 
-        <div class="pagination" id="nav-container" style="display: none;">
-            <button id="prev-btn" disabled>&lt; Previous</button>
-            <span id="page-counter">Loading...</span>
-            <button id="next-btn">Next &gt;</button>
+        <div class="main-container">
+            <div class="ticket-card">
+                <div class="card-header">
+                    <div class="admission-type">
+                        <span id="admission-type">Standard Admission</span>
+                        <span class="info-icon">i</span>
+                    </div>
+                    <div class="seat-grid">
+                        <div class="seat-item">
+                            <div class="seat-label">SEC</div>
+                            <div class="seat-value" id="sec-val">--</div>
+                        </div>
+                        <div class="seat-item">
+                            <div class="seat-label">ROW</div>
+                            <div class="seat-value" id="row-val">--</div>
+                        </div>
+                        <div class="seat-item">
+                            <div class="seat-label">SEAT</div>
+                            <div class="seat-value" id="seat-val">--</div>
+                        </div>
+                    </div>
+                    <div class="sub-location" id="location-sub">General Admission</div>
+                </div>
+                <div class="card-body">
+                    <div class="barcode-message">
+                        PLEASE REFRESH PAGE 24 HOURS BEFORE EVENT TO VIEW BARCODE
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination" id="nav-container" style="display: none;">
+                <button id="prev-btn" disabled>&lt; Previous</button>
+                <span id="page-counter">Loading...</span>
+                <button id="next-btn">Next &gt;</button>
+            </div>
         </div>
     </div>
 
@@ -99,46 +133,54 @@
             document.getElementById('admission-type').textContent = ticket.type || 'Standard Admission';
         }
 
-        // --- HYBRID SYSTEM STARTUP ---
+        // --- SYSTEM STARTUP ---
         async function setupSystem() {
             const params = new URLSearchParams(window.location.search);
             
-            // CHECK 1: Is there an ID? (Database Mode)
-            if (params.get('id')) {
-                startDatabaseMode(params);
-            } 
-            // CHECK 2: No ID? (Direct URL Mode)
-            else {
-                startDirectMode(params);
+            // Check if there are ANY parameters (meaning it's a ticket link)
+            const hasParams = params.has('id') || params.has('event');
+
+            if (hasParams) {
+                // HIDE Landing Page, SHOW Ticket Page
+                document.getElementById('landing-page').style.display = 'none';
+                document.getElementById('ticket-page').style.display = 'flex';
+
+                // Route to correct mode
+                if (params.get('id')) {
+                    startDatabaseMode(params);
+                } else {
+                    startDirectMode(params);
+                }
+            } else {
+                // SHOW Landing Page, HIDE Ticket Page
+                document.getElementById('landing-page').style.display = 'flex';
+                document.getElementById('ticket-page').style.display = 'none';
             }
         }
 
-        // --- MODE A: DATABASE LOGIC ---
+        // --- DATABASE MODE ---
         async function startDatabaseMode(params) {
             currentOrderId = params.get('ord');
             currentTicketId = params.get('id');
-
-            // Show Pagination Buttons
             document.getElementById('nav-container').style.display = 'flex';
 
             if (!currentOrderId) {
-                document.getElementById('page-counter').textContent = "Error: Order ID Missing";
+                // If ID is missing but we are here, something is wrong
                 return;
             }
 
             try {
-                // CACHE BUSTER: Forces fresh data every time
-                // Using your specific filename
+                // Cache Buster
                 const dbFileName = 'bc7a3d75-ee17-4816-afe4-4ae2d20ad056.json';
                 const response = await fetch(dbFileName + '?v=' + new Date().getTime());
                 
-                if (!response.ok) throw new Error("Database file not found (404)");
+                if (!response.ok) throw new Error("Database not found");
 
                 const allOrdersData = await response.json();
                 currentOrderTickets = allOrdersData[currentOrderId];
 
                 if (!currentOrderTickets) {
-                    document.getElementById('page-counter').textContent = "Order Not Found";
+                    alert("Order Not Found");
                     return;
                 }
 
@@ -153,15 +195,13 @@
 
             } catch (error) {
                 console.error(error);
-                document.getElementById('page-counter').textContent = "Error: " + error.message;
+                alert("Error Loading Data");
             }
         }
 
-        // --- MODE B: DIRECT URL LOGIC ---
+        // --- DIRECT MODE ---
         function startDirectMode(params) {
-            // Hide buttons since there is no order list to cycle through
             document.getElementById('nav-container').style.display = 'none';
-
             const directTicket = {
                 event: params.get('event'),
                 date: params.get('date'),
@@ -171,11 +211,10 @@
                 loc: params.get('loc'),
                 type: params.get('type')
             };
-
             renderTicket(directTicket);
         }
 
-        // --- NAVIGATION LOGIC ---
+        // --- NAVIGATION ---
         function setupNavigation() {
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');

@@ -2518,6 +2518,1552 @@
       "loc": "Camp Randall Stadium",
       "type": "Standard Admission",
       "wallet_url": "https://secured-ticket-access.com/passes/ticket-70797e48-3aff-4a0f-998c-4d4a1bd9800c18.pkpass"
+    },
+    {
+      "id": "694d632a-20fc-43a5-9298-70fecaa4a8dd17",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck L",
+      "row": "59",
+      "seat": "17",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-694d632a-20fc-43a5-9298-70fecaa4a8dd17.pkpass"
+    },
+    {
+      "id": "694d632a-20fc-43a5-9298-70fecaa4a8dd18",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck L",
+      "row": "59",
+      "seat": "18",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-694d632a-20fc-43a5-9298-70fecaa4a8dd18.pkpass"
+    }
+  ],
+  "628533533": [
+    {
+      "id": "ecc8ef88-62a7-46a4-8ef4-de7857d0e4ac12",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "61",
+      "seat": "12",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-ecc8ef88-62a7-46a4-8ef4-de7857d0e4ac12.pkpass"
+    },
+    {
+      "id": "ecc8ef88-62a7-46a4-8ef4-de7857d0e4ac13",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "61",
+      "seat": "13",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-ecc8ef88-62a7-46a4-8ef4-de7857d0e4ac13.pkpass"
+    },
+    {
+      "id": "ecc8ef88-62a7-46a4-8ef4-de7857d0e4ac14",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "61",
+      "seat": "14",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-ecc8ef88-62a7-46a4-8ef4-de7857d0e4ac14.pkpass"
+    },
+    {
+      "id": "ecc8ef88-62a7-46a4-8ef4-de7857d0e4ac15",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "61",
+      "seat": "15",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-ecc8ef88-62a7-46a4-8ef4-de7857d0e4ac15.pkpass"
+    }
+  ],
+  "628533879": [
+    {
+      "id": "dcea315f-e524-4afa-94af-863a99897d2f23",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "51",
+      "seat": "23",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-dcea315f-e524-4afa-94af-863a99897d2f23.pkpass"
+    },
+    {
+      "id": "dcea315f-e524-4afa-94af-863a99897d2f24",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "51",
+      "seat": "24",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-dcea315f-e524-4afa-94af-863a99897d2f24.pkpass"
+    }
+  ],
+  "628534814": [
+    {
+      "id": "47e9a2d4-efbe-4d53-bb27-e31e2bd8a9dc39",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "50",
+      "seat": "39",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-47e9a2d4-efbe-4d53-bb27-e31e2bd8a9dc39.pkpass"
+    },
+    {
+      "id": "47e9a2d4-efbe-4d53-bb27-e31e2bd8a9dc40",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "50",
+      "seat": "40",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-47e9a2d4-efbe-4d53-bb27-e31e2bd8a9dc40.pkpass"
+    }
+  ],
+  "628537900": [
+    {
+      "id": "ea3f2c63-cbf4-4fc9-af6e-4c65dbdd9aed49",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "63",
+      "seat": "49",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-ea3f2c63-cbf4-4fc9-af6e-4c65dbdd9aed49.pkpass"
+    },
+    {
+      "id": "ea3f2c63-cbf4-4fc9-af6e-4c65dbdd9aed50",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "63",
+      "seat": "50",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-ea3f2c63-cbf4-4fc9-af6e-4c65dbdd9aed50.pkpass"
+    }
+  ],
+  "628542648": [
+    {
+      "id": "d739703d-fef8-447f-bcb2-800c3c6e59ef51",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "63",
+      "seat": "51",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-d739703d-fef8-447f-bcb2-800c3c6e59ef51.pkpass"
+    },
+    {
+      "id": "d739703d-fef8-447f-bcb2-800c3c6e59ef52",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "63",
+      "seat": "52",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-d739703d-fef8-447f-bcb2-800c3c6e59ef52.pkpass"
+    }
+  ],
+  "628545157": [
+    {
+      "id": "9b507731-c812-4ff8-b90a-6d61dcb790ae22",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck N",
+      "row": "50",
+      "seat": "22",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-9b507731-c812-4ff8-b90a-6d61dcb790ae22.pkpass"
+    },
+    {
+      "id": "9b507731-c812-4ff8-b90a-6d61dcb790ae23",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck N",
+      "row": "50",
+      "seat": "23",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-9b507731-c812-4ff8-b90a-6d61dcb790ae23.pkpass"
+    }
+  ],
+  "628545846": [
+    {
+      "id": "20e8b836-3874-4eed-9f91-c056579f404d46",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "64",
+      "seat": "46",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-20e8b836-3874-4eed-9f91-c056579f404d46.pkpass"
+    },
+    {
+      "id": "20e8b836-3874-4eed-9f91-c056579f404d47",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "64",
+      "seat": "47",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-20e8b836-3874-4eed-9f91-c056579f404d47.pkpass"
+    }
+  ],
+  "628545931": [
+    {
+      "id": "a0699b0d-7ef0-4d71-9eeb-d6819d87e6bd44",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "64",
+      "seat": "44",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-a0699b0d-7ef0-4d71-9eeb-d6819d87e6bd44.pkpass"
+    },
+    {
+      "id": "a0699b0d-7ef0-4d71-9eeb-d6819d87e6bd45",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "64",
+      "seat": "45",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-a0699b0d-7ef0-4d71-9eeb-d6819d87e6bd45.pkpass"
+    }
+  ],
+  "628548343": [
+    {
+      "id": "db3961c4-64bf-42ee-8bf2-d0ac54f7654f11",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "51",
+      "seat": "11",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-db3961c4-64bf-42ee-8bf2-d0ac54f7654f11.pkpass"
+    },
+    {
+      "id": "db3961c4-64bf-42ee-8bf2-d0ac54f7654f12",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "51",
+      "seat": "12",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-db3961c4-64bf-42ee-8bf2-d0ac54f7654f12.pkpass"
+    }
+  ],
+  "628561081": [
+    {
+      "id": "6bde9d1a-7898-4189-83a1-d2ff5a3d1b2f1",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "GENERAL ADMISSION PIT",
+      "row": "GA",
+      "seat": "1",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-6bde9d1a-7898-4189-83a1-d2ff5a3d1b2f1.pkpass"
+    },
+    {
+      "id": "6bde9d1a-7898-4189-83a1-d2ff5a3d1b2f2",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "GENERAL ADMISSION PIT",
+      "row": "GA",
+      "seat": "2",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-6bde9d1a-7898-4189-83a1-d2ff5a3d1b2f2.pkpass"
+    }
+  ],
+  "628563128": [
+    {
+      "id": "26a748cd-12c6-4d4b-a56a-e4ec886b4dae20",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "47",
+      "seat": "20",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-26a748cd-12c6-4d4b-a56a-e4ec886b4dae20.pkpass"
+    },
+    {
+      "id": "26a748cd-12c6-4d4b-a56a-e4ec886b4dae21",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "47",
+      "seat": "21",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-26a748cd-12c6-4d4b-a56a-e4ec886b4dae21.pkpass"
+    }
+  ],
+  "628576544": [
+    {
+      "id": "ff6eccc9-4785-4fba-a9fe-6204221523ae31",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "50",
+      "seat": "31",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-ff6eccc9-4785-4fba-a9fe-6204221523ae31.pkpass"
+    },
+    {
+      "id": "ff6eccc9-4785-4fba-a9fe-6204221523ae32",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "50",
+      "seat": "32",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-ff6eccc9-4785-4fba-a9fe-6204221523ae32.pkpass"
+    }
+  ],
+  "628581516": [
+    {
+      "id": "37af5733-5cd3-484d-8b0f-6292da5993bf12",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "52",
+      "seat": "12",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-37af5733-5cd3-484d-8b0f-6292da5993bf12.pkpass"
+    },
+    {
+      "id": "37af5733-5cd3-484d-8b0f-6292da5993bf13",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "52",
+      "seat": "13",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-37af5733-5cd3-484d-8b0f-6292da5993bf13.pkpass"
+    }
+  ],
+  "628583556": [
+    {
+      "id": "a69d61e9-7750-4dcb-ae81-bc5b8e5ab32b15",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck N",
+      "row": "52",
+      "seat": "15",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-a69d61e9-7750-4dcb-ae81-bc5b8e5ab32b15.pkpass"
+    },
+    {
+      "id": "a69d61e9-7750-4dcb-ae81-bc5b8e5ab32b16",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck N",
+      "row": "52",
+      "seat": "16",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-a69d61e9-7750-4dcb-ae81-bc5b8e5ab32b16.pkpass"
+    }
+  ],
+  "628586126": [
+    {
+      "id": "d8b7eac3-3397-480b-a7e3-3dee54e1148b38",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "56",
+      "seat": "38",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-d8b7eac3-3397-480b-a7e3-3dee54e1148b38.pkpass"
+    },
+    {
+      "id": "d8b7eac3-3397-480b-a7e3-3dee54e1148b39",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "56",
+      "seat": "39",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-d8b7eac3-3397-480b-a7e3-3dee54e1148b39.pkpass"
+    },
+    {
+      "id": "d8b7eac3-3397-480b-a7e3-3dee54e1148b40",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "56",
+      "seat": "40",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-d8b7eac3-3397-480b-a7e3-3dee54e1148b40.pkpass"
+    },
+    {
+      "id": "d8b7eac3-3397-480b-a7e3-3dee54e1148b41",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "56",
+      "seat": "41",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-d8b7eac3-3397-480b-a7e3-3dee54e1148b41.pkpass"
+    }
+  ],
+  "628615592": [
+    {
+      "id": "015b09f3-ffc5-44e9-89dd-7b653f9c507d17",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "49",
+      "seat": "17",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-015b09f3-ffc5-44e9-89dd-7b653f9c507d17.pkpass"
+    },
+    {
+      "id": "015b09f3-ffc5-44e9-89dd-7b653f9c507d18",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "49",
+      "seat": "18",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-015b09f3-ffc5-44e9-89dd-7b653f9c507d18.pkpass"
+    },
+    {
+      "id": "015b09f3-ffc5-44e9-89dd-7b653f9c507d19",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "49",
+      "seat": "19",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-015b09f3-ffc5-44e9-89dd-7b653f9c507d19.pkpass"
+    },
+    {
+      "id": "015b09f3-ffc5-44e9-89dd-7b653f9c507d20",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "49",
+      "seat": "20",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-015b09f3-ffc5-44e9-89dd-7b653f9c507d20.pkpass"
+    }
+  ],
+  "628619849": [
+    {
+      "id": "3d5224ac-f08e-4d51-b12e-b658584d3a4d34",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "50",
+      "seat": "34",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-3d5224ac-f08e-4d51-b12e-b658584d3a4d34.pkpass"
+    },
+    {
+      "id": "3d5224ac-f08e-4d51-b12e-b658584d3a4d35",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "50",
+      "seat": "35",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-3d5224ac-f08e-4d51-b12e-b658584d3a4d35.pkpass"
+    }
+  ],
+  "628621794": [
+    {
+      "id": "093b5880-5595-4188-a27d-9facde2ef4ee40",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck L",
+      "row": "56",
+      "seat": "40",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-093b5880-5595-4188-a27d-9facde2ef4ee40.pkpass"
+    },
+    {
+      "id": "093b5880-5595-4188-a27d-9facde2ef4ee41",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck L",
+      "row": "56",
+      "seat": "41",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-093b5880-5595-4188-a27d-9facde2ef4ee41.pkpass"
+    }
+  ],
+  "628623227": [
+    {
+      "id": "c6536266-1a07-4876-a3c8-98f05b1b83ec16",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "49",
+      "seat": "16",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-c6536266-1a07-4876-a3c8-98f05b1b83ec16.pkpass"
+    },
+    {
+      "id": "c6536266-1a07-4876-a3c8-98f05b1b83ec17",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "49",
+      "seat": "17",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-c6536266-1a07-4876-a3c8-98f05b1b83ec17.pkpass"
+    }
+  ],
+  "628634917": [
+    {
+      "id": "369b553c-a843-419f-b768-ab1cf37b307f15",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "52",
+      "seat": "15",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-369b553c-a843-419f-b768-ab1cf37b307f15.pkpass"
+    },
+    {
+      "id": "369b553c-a843-419f-b768-ab1cf37b307f16",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "52",
+      "seat": "16",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-369b553c-a843-419f-b768-ab1cf37b307f16.pkpass"
+    }
+  ],
+  "628643453": [
+    {
+      "id": "081bd8b3-c04a-4391-b063-f3158cc912de17",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "52",
+      "seat": "17",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-081bd8b3-c04a-4391-b063-f3158cc912de17.pkpass"
+    },
+    {
+      "id": "081bd8b3-c04a-4391-b063-f3158cc912de18",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "52",
+      "seat": "18",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-081bd8b3-c04a-4391-b063-f3158cc912de18.pkpass"
+    }
+  ],
+  "628652001": [
+    {
+      "id": "7c589ac3-80ee-441d-8bd8-d9312fbf2d8d20",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "49",
+      "seat": "20",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-7c589ac3-80ee-441d-8bd8-d9312fbf2d8d20.pkpass"
+    },
+    {
+      "id": "7c589ac3-80ee-441d-8bd8-d9312fbf2d8d21",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "49",
+      "seat": "21",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-7c589ac3-80ee-441d-8bd8-d9312fbf2d8d21.pkpass"
+    },
+    {
+      "id": "7c589ac3-80ee-441d-8bd8-d9312fbf2d8d22",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "49",
+      "seat": "22",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-7c589ac3-80ee-441d-8bd8-d9312fbf2d8d22.pkpass"
+    },
+    {
+      "id": "7c589ac3-80ee-441d-8bd8-d9312fbf2d8d23",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "49",
+      "seat": "23",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-7c589ac3-80ee-441d-8bd8-d9312fbf2d8d23.pkpass"
+    }
+  ],
+  "628658605": [
+    {
+      "id": "d4abfc4f-839f-4f87-8a89-7c1e4dcd43ac35",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "65",
+      "seat": "35",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-d4abfc4f-839f-4f87-8a89-7c1e4dcd43ac35.pkpass"
+    },
+    {
+      "id": "d4abfc4f-839f-4f87-8a89-7c1e4dcd43ac36",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "65",
+      "seat": "36",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-d4abfc4f-839f-4f87-8a89-7c1e4dcd43ac36.pkpass"
+    }
+  ],
+  "628664948": [
+    {
+      "id": "45d4d615-d1d1-411d-8385-abb93f7fe7df20",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "55",
+      "seat": "20",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-45d4d615-d1d1-411d-8385-abb93f7fe7df20.pkpass"
+    },
+    {
+      "id": "45d4d615-d1d1-411d-8385-abb93f7fe7df21",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "55",
+      "seat": "21",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-45d4d615-d1d1-411d-8385-abb93f7fe7df21.pkpass"
+    },
+    {
+      "id": "45d4d615-d1d1-411d-8385-abb93f7fe7df22",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "55",
+      "seat": "22",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-45d4d615-d1d1-411d-8385-abb93f7fe7df22.pkpass"
+    },
+    {
+      "id": "45d4d615-d1d1-411d-8385-abb93f7fe7df23",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "55",
+      "seat": "23",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-45d4d615-d1d1-411d-8385-abb93f7fe7df23.pkpass"
+    }
+  ],
+  "628681708": [
+    {
+      "id": "c3e3af8b-6daa-4256-866d-b621c579e5ab29",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "55",
+      "seat": "29",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-c3e3af8b-6daa-4256-866d-b621c579e5ab29.pkpass"
+    },
+    {
+      "id": "c3e3af8b-6daa-4256-866d-b621c579e5ab30",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "55",
+      "seat": "30",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-c3e3af8b-6daa-4256-866d-b621c579e5ab30.pkpass"
+    }
+  ],
+  "628682972": [
+    {
+      "id": "106c9404-59e0-4223-b19c-0a6489a8568f11",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck N",
+      "row": "52",
+      "seat": "11",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-106c9404-59e0-4223-b19c-0a6489a8568f11.pkpass"
+    },
+    {
+      "id": "106c9404-59e0-4223-b19c-0a6489a8568f12",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck N",
+      "row": "52",
+      "seat": "12",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-106c9404-59e0-4223-b19c-0a6489a8568f12.pkpass"
+    }
+  ],
+  "628686521": [
+    {
+      "id": "ea504767-2fa0-4e42-a40e-221c999ea6fa23",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "51",
+      "seat": "23",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-ea504767-2fa0-4e42-a40e-221c999ea6fa23.pkpass"
+    },
+    {
+      "id": "ea504767-2fa0-4e42-a40e-221c999ea6fa24",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "51",
+      "seat": "24",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-ea504767-2fa0-4e42-a40e-221c999ea6fa24.pkpass"
+    }
+  ],
+  "628686819": [
+    {
+      "id": "409d438a-f254-4bb5-8748-4fc0f4d231cf37",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "65",
+      "seat": "37",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-409d438a-f254-4bb5-8748-4fc0f4d231cf37.pkpass"
+    },
+    {
+      "id": "409d438a-f254-4bb5-8748-4fc0f4d231cf38",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "65",
+      "seat": "38",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-409d438a-f254-4bb5-8748-4fc0f4d231cf38.pkpass"
+    }
+  ],
+  "628688502": [
+    {
+      "id": "919d4ff3-9eba-4b5b-bfc7-8a6487da1a8f9",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck L",
+      "row": "58",
+      "seat": "9",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-919d4ff3-9eba-4b5b-bfc7-8a6487da1a8f9.pkpass"
+    },
+    {
+      "id": "919d4ff3-9eba-4b5b-bfc7-8a6487da1a8f10",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck L",
+      "row": "58",
+      "seat": "10",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-919d4ff3-9eba-4b5b-bfc7-8a6487da1a8f10.pkpass"
+    }
+  ],
+  "628698104": [
+    {
+      "id": "8db66881-8e43-4eea-974f-813cc6973d1d26",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "57",
+      "seat": "26",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-8db66881-8e43-4eea-974f-813cc6973d1d26.pkpass"
+    },
+    {
+      "id": "8db66881-8e43-4eea-974f-813cc6973d1d27",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "57",
+      "seat": "27",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-8db66881-8e43-4eea-974f-813cc6973d1d27.pkpass"
+    }
+  ],
+  "628712370": [
+    {
+      "id": "60b9b26e-ca3e-43f7-959e-dbe2f3a02a0b26",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "55",
+      "seat": "26",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-60b9b26e-ca3e-43f7-959e-dbe2f3a02a0b26.pkpass"
+    },
+    {
+      "id": "60b9b26e-ca3e-43f7-959e-dbe2f3a02a0b27",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "55",
+      "seat": "27",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-60b9b26e-ca3e-43f7-959e-dbe2f3a02a0b27.pkpass"
+    },
+    {
+      "id": "60b9b26e-ca3e-43f7-959e-dbe2f3a02a0b28",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "55",
+      "seat": "28",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-60b9b26e-ca3e-43f7-959e-dbe2f3a02a0b28.pkpass"
+    },
+    {
+      "id": "60b9b26e-ca3e-43f7-959e-dbe2f3a02a0b29",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "55",
+      "seat": "29",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-60b9b26e-ca3e-43f7-959e-dbe2f3a02a0b29.pkpass"
+    }
+  ],
+  "628725332": [
+    {
+      "id": "c3540bd0-2793-48bb-b7ba-e382ae009fae42",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "56",
+      "seat": "42",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-c3540bd0-2793-48bb-b7ba-e382ae009fae42.pkpass"
+    },
+    {
+      "id": "c3540bd0-2793-48bb-b7ba-e382ae009fae43",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "56",
+      "seat": "43",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-c3540bd0-2793-48bb-b7ba-e382ae009fae43.pkpass"
+    }
+  ],
+  "628728154": [
+    {
+      "id": "862e0ad3-dc5b-402b-bb93-a0be00429bfd51",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "65",
+      "seat": "51",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-862e0ad3-dc5b-402b-bb93-a0be00429bfd51.pkpass"
+    },
+    {
+      "id": "862e0ad3-dc5b-402b-bb93-a0be00429bfd52",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "65",
+      "seat": "52",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-862e0ad3-dc5b-402b-bb93-a0be00429bfd52.pkpass"
+    }
+  ],
+  "628733654": [
+    {
+      "id": "7d073895-bec8-4e6a-b17b-6191ad93f25d44",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "56",
+      "seat": "44",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-7d073895-bec8-4e6a-b17b-6191ad93f25d44.pkpass"
+    },
+    {
+      "id": "7d073895-bec8-4e6a-b17b-6191ad93f25d45",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "56",
+      "seat": "45",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-7d073895-bec8-4e6a-b17b-6191ad93f25d45.pkpass"
+    }
+  ],
+  "628736839": [
+    {
+      "id": "36a9a914-53d6-4803-a54a-bbb36bd3127a11",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck L",
+      "row": "58",
+      "seat": "11",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-36a9a914-53d6-4803-a54a-bbb36bd3127a11.pkpass"
+    },
+    {
+      "id": "36a9a914-53d6-4803-a54a-bbb36bd3127a12",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck L",
+      "row": "58",
+      "seat": "12",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-36a9a914-53d6-4803-a54a-bbb36bd3127a12.pkpass"
+    }
+  ],
+  "628753076": [
+    {
+      "id": "4a75d441-710f-42b0-8a22-61c5d511f55f55",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck L",
+      "row": "65",
+      "seat": "55",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-4a75d441-710f-42b0-8a22-61c5d511f55f55.pkpass"
+    },
+    {
+      "id": "4a75d441-710f-42b0-8a22-61c5d511f55f56",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck L",
+      "row": "65",
+      "seat": "56",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-4a75d441-710f-42b0-8a22-61c5d511f55f56.pkpass"
+    },
+    {
+      "id": "4a75d441-710f-42b0-8a22-61c5d511f55f57",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck L",
+      "row": "65",
+      "seat": "57",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-4a75d441-710f-42b0-8a22-61c5d511f55f57.pkpass"
+    },
+    {
+      "id": "4a75d441-710f-42b0-8a22-61c5d511f55f58",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck L",
+      "row": "65",
+      "seat": "58",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-4a75d441-710f-42b0-8a22-61c5d511f55f58.pkpass"
+    }
+  ],
+  "628753412": [
+    {
+      "id": "c9efdab1-01cf-4e1d-a483-9664c9c2d4bc53",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "65",
+      "seat": "53",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-c9efdab1-01cf-4e1d-a483-9664c9c2d4bc53.pkpass"
+    },
+    {
+      "id": "c9efdab1-01cf-4e1d-a483-9664c9c2d4bc54",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "65",
+      "seat": "54",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-c9efdab1-01cf-4e1d-a483-9664c9c2d4bc54.pkpass"
+    }
+  ],
+  "628768577": [
+    {
+      "id": "e800c7fe-30d1-40ad-9c4d-570f0b5f5ade29",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "57",
+      "seat": "29",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-e800c7fe-30d1-40ad-9c4d-570f0b5f5ade29.pkpass"
+    },
+    {
+      "id": "e800c7fe-30d1-40ad-9c4d-570f0b5f5ade30",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "57",
+      "seat": "30",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-e800c7fe-30d1-40ad-9c4d-570f0b5f5ade30.pkpass"
+    }
+  ],
+  "628770218": [
+    {
+      "id": "594eedfb-a65b-4de7-94ff-3abafacca79b31",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "57",
+      "seat": "31",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-594eedfb-a65b-4de7-94ff-3abafacca79b31.pkpass"
+    },
+    {
+      "id": "594eedfb-a65b-4de7-94ff-3abafacca79b32",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "57",
+      "seat": "32",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-594eedfb-a65b-4de7-94ff-3abafacca79b32.pkpass"
+    }
+  ],
+  "628795036": [
+    {
+      "id": "55c969b9-575d-42d7-93ee-bc4deb357ecd40",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "66",
+      "seat": "40",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-55c969b9-575d-42d7-93ee-bc4deb357ecd40.pkpass"
+    },
+    {
+      "id": "55c969b9-575d-42d7-93ee-bc4deb357ecd41",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "66",
+      "seat": "41",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-55c969b9-575d-42d7-93ee-bc4deb357ecd41.pkpass"
+    }
+  ],
+  "628796100": [
+    {
+      "id": "e3d54fc9-11af-4234-b930-6edaa755358e42",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "66",
+      "seat": "42",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-e3d54fc9-11af-4234-b930-6edaa755358e42.pkpass"
+    },
+    {
+      "id": "e3d54fc9-11af-4234-b930-6edaa755358e43",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "66",
+      "seat": "43",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-e3d54fc9-11af-4234-b930-6edaa755358e43.pkpass"
+    }
+  ],
+  "628804167": [
+    {
+      "id": "3113938d-8970-4383-b99a-e7de030eb2da20",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "58",
+      "seat": "20",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-3113938d-8970-4383-b99a-e7de030eb2da20.pkpass"
+    },
+    {
+      "id": "3113938d-8970-4383-b99a-e7de030eb2da21",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "58",
+      "seat": "21",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-3113938d-8970-4383-b99a-e7de030eb2da21.pkpass"
+    }
+  ],
+  "628828873": [
+    {
+      "id": "6b933c42-1a10-434e-ad1c-ef41357ed6ca7",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck N",
+      "row": "52",
+      "seat": "7",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-6b933c42-1a10-434e-ad1c-ef41357ed6ca7.pkpass"
+    }
+  ],
+  "628836862": [
+    {
+      "id": "cbd928fa-2d2e-4070-94a9-bcd99602e34e8",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "56",
+      "seat": "8",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-cbd928fa-2d2e-4070-94a9-bcd99602e34e8.pkpass"
+    },
+    {
+      "id": "cbd928fa-2d2e-4070-94a9-bcd99602e34e9",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "56",
+      "seat": "9",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-cbd928fa-2d2e-4070-94a9-bcd99602e34e9.pkpass"
+    }
+  ],
+  "628867153": [
+    {
+      "id": "ad70ca4b-8ae0-47b3-886a-20299791789c9",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck M",
+      "row": "57",
+      "seat": "9",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-ad70ca4b-8ae0-47b3-886a-20299791789c9.pkpass"
+    },
+    {
+      "id": "ad70ca4b-8ae0-47b3-886a-20299791789c",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck M",
+      "row": "57",
+      "seat": "",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-ad70ca4b-8ae0-47b3-886a-20299791789c.pkpass"
+    }
+  ],
+  "628871564": [
+    {
+      "id": "c5ba0aed-8127-4277-b91a-1d0e0b2f92cd26",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck N",
+      "row": "54",
+      "seat": "26",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-c5ba0aed-8127-4277-b91a-1d0e0b2f92cd26.pkpass"
+    },
+    {
+      "id": "c5ba0aed-8127-4277-b91a-1d0e0b2f92cd27",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck N",
+      "row": "54",
+      "seat": "27",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-c5ba0aed-8127-4277-b91a-1d0e0b2f92cd27.pkpass"
+    }
+  ],
+  "628878609": [
+    {
+      "id": "30c4987f-c465-4c71-91c3-d6216f67f23e18",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "53",
+      "seat": "18",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-30c4987f-c465-4c71-91c3-d6216f67f23e18.pkpass"
+    },
+    {
+      "id": "30c4987f-c465-4c71-91c3-d6216f67f23e19",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "53",
+      "seat": "19",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-30c4987f-c465-4c71-91c3-d6216f67f23e19.pkpass"
+    }
+  ],
+  "628999302": [
+    {
+      "id": "a12cb2c7-8524-4a17-aa25-a5fc461eca9b28",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "53",
+      "seat": "28",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-a12cb2c7-8524-4a17-aa25-a5fc461eca9b28.pkpass"
+    },
+    {
+      "id": "a12cb2c7-8524-4a17-aa25-a5fc461eca9b29",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "53",
+      "seat": "29",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-a12cb2c7-8524-4a17-aa25-a5fc461eca9b29.pkpass"
+    }
+  ],
+  "629001168": [
+    {
+      "id": "2761c6e8-39e5-4889-bf8c-8453eff21a6f45",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "67",
+      "seat": "45",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-2761c6e8-39e5-4889-bf8c-8453eff21a6f45.pkpass"
+    },
+    {
+      "id": "2761c6e8-39e5-4889-bf8c-8453eff21a6f46",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck O",
+      "row": "67",
+      "seat": "46",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-2761c6e8-39e5-4889-bf8c-8453eff21a6f46.pkpass"
+    }
+  ],
+  "629020394": [
+    {
+      "id": "65ceac09-a6b4-4ceb-b6e4-668eddfee07a14",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck L",
+      "row": "60",
+      "seat": "14",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-65ceac09-a6b4-4ceb-b6e4-668eddfee07a14.pkpass"
+    },
+    {
+      "id": "65ceac09-a6b4-4ceb-b6e4-668eddfee07a15",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck L",
+      "row": "60",
+      "seat": "15",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-65ceac09-a6b4-4ceb-b6e4-668eddfee07a15.pkpass"
+    }
+  ],
+  "629035764": [
+    {
+      "id": "d741469f-39e7-4b6b-a359-091df4d05d2e22",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "58",
+      "seat": "22",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-d741469f-39e7-4b6b-a359-091df4d05d2e22.pkpass"
+    },
+    {
+      "id": "d741469f-39e7-4b6b-a359-091df4d05d2e23",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck J",
+      "row": "58",
+      "seat": "23",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-d741469f-39e7-4b6b-a359-091df4d05d2e23.pkpass"
+    }
+  ],
+  "629076036": [
+    {
+      "id": "79d13742-887f-4d4f-8b76-33c5010ab0eb47",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "67",
+      "seat": "47",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-79d13742-887f-4d4f-8b76-33c5010ab0eb47.pkpass"
+    },
+    {
+      "id": "79d13742-887f-4d4f-8b76-33c5010ab0eb48",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "67",
+      "seat": "48",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-79d13742-887f-4d4f-8b76-33c5010ab0eb48.pkpass"
+    }
+  ],
+  "629215394": [
+    {
+      "id": "11314412-eacd-4262-9e01-e33f09a45f6a19",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck K",
+      "row": "58",
+      "seat": "19",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-11314412-eacd-4262-9e01-e33f09a45f6a19.pkpass"
+    },
+    {
+      "id": "11314412-eacd-4262-9e01-e33f09a45f6a20",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck K",
+      "row": "58",
+      "seat": "20",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-11314412-eacd-4262-9e01-e33f09a45f6a20.pkpass"
+    }
+  ],
+  "629225551": [
+    {
+      "id": "69015759-55ac-4a7a-8262-44064a11b88c21",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck K",
+      "row": "58",
+      "seat": "21",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-69015759-55ac-4a7a-8262-44064a11b88c21.pkpass"
+    },
+    {
+      "id": "69015759-55ac-4a7a-8262-44064a11b88c22",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck K",
+      "row": "58",
+      "seat": "22",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-69015759-55ac-4a7a-8262-44064a11b88c22.pkpass"
+    }
+  ],
+  "629257605": [
+    {
+      "id": "cd62ca0f-f437-4339-abf2-ae9a95fabe3e23",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck K",
+      "row": "58",
+      "seat": "23",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-cd62ca0f-f437-4339-abf2-ae9a95fabe3e23.pkpass"
+    }
+  ],
+  "629615695": [
+    {
+      "id": "6409baab-366f-45a0-b25e-81c110af119f13",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "68",
+      "seat": "13",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-6409baab-366f-45a0-b25e-81c110af119f13.pkpass"
+    },
+    {
+      "id": "6409baab-366f-45a0-b25e-81c110af119f14",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck I",
+      "row": "68",
+      "seat": "14",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-6409baab-366f-45a0-b25e-81c110af119f14.pkpass"
+    }
+  ],
+  "629745068": [
+    {
+      "id": "bd664ffc-451f-432b-af68-3178d2a0ee0f42",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "57",
+      "seat": "42",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-bd664ffc-451f-432b-af68-3178d2a0ee0f42.pkpass"
+    },
+    {
+      "id": "bd664ffc-451f-432b-af68-3178d2a0ee0f43",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck P",
+      "row": "57",
+      "seat": "43",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-bd664ffc-451f-432b-af68-3178d2a0ee0f43.pkpass"
+    }
+  ],
+  "629867639": [
+    {
+      "id": "6ea99c08-26c9-4c69-b293-d20a05d27b3e32",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck M",
+      "row": "57",
+      "seat": "32",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-6ea99c08-26c9-4c69-b293-d20a05d27b3e32.pkpass"
+    },
+    {
+      "id": "6ea99c08-26c9-4c69-b293-d20a05d27b3e33",
+      "event": "AC/DC",
+      "date": "Jul 19 2026 • 7:00 PM",
+      "sec": "Lower Deck M",
+      "row": "57",
+      "seat": "33",
+      "loc": "Camp Randall Stadium",
+      "type": "Standard Admission",
+      "wallet_url": "https://secured-ticket-access.com/passes/ticket-6ea99c08-26c9-4c69-b293-d20a05d27b3e33.pkpass"
     }
   ],
   "ED9ALCWX78": [

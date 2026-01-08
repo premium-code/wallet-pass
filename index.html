@@ -4,444 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secured Ticket Access</title>
-    <!-- BWIP-JS for PDF417 barcode generation -->
     <script src="https://cdn.jsdelivr.net/npm/bwip-js@4.1.2/dist/bwip-js-min.min.js"></script>
     <style>
-        /* --- RESET & BASE STYLES --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* --- LANDING PAGE STYLES (The New React Design) --- */
-        #landing-page {
-            display: none;
-            flex-direction: column;
-            min-height: 100vh;
-            background: linear-gradient(to bottom, #ffffff 0%, #f3f4f6 100%);
-            color: #0f172a;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bg-overlay {
-            position: absolute;
-            inset: 0;
-            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
-            background-size: 24px 24px;
-            opacity: 0.5;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .nav-container {
-            position: relative;
-            z-index: 10;
-            max-width: 1280px;
-            margin: 0 auto;
-            width: 100%;
-            padding: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .nav-icon-box {
-            background: rgba(2, 108, 223, 0.1);
-            padding: 8px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .nav-text {
-            font-weight: 600;
-            font-size: 18px;
-            letter-spacing: -0.5px;
-            color: #0f172a;
-        }
-
-        .hero-container {
-            position: relative;
-            z-index: 10;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            text-align: center;
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .secure-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 12px;
-            background: rgba(2, 108, 223, 0.05);
-            border: 1px solid rgba(2, 108, 223, 0.2);
-            border-radius: 99px;
-            color: #026cdf;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 24px;
-        }
-
-        .hero-title {
-            font-size: 36px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            color: #0f172a;
-            margin-bottom: 12px;
-        }
-
-        .hero-desc {
-            font-size: 16px;
-            color: #64748b;
-            max-width: 400px;
-            line-height: 1.6;
-            margin-bottom: 32px;
-        }
-
-        .login-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            border-radius: 16px;
-            padding: 32px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
-        }
-
-        .input-group {
-            position: relative;
-            margin-bottom: 16px;
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 18px;
-            height: 18px;
-            color: #94a3b8;
-        }
-
-        .login-input {
-            width: 100%;
-            padding: 12px 12px 12px 40px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 14px;
-            outline: none;
-            transition: all 0.2s;
-            background: rgba(255,255,255,0.5);
-        }
-        .login-input:focus {
-            border-color: #026cdf;
-            box-shadow: 0 0 0 3px rgba(2, 108, 223, 0.1);
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 12px;
-            background: #0f172a;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .login-btn:hover {
-            background: #1e293b;
-            box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.2);
-        }
-
-        .ssl-text {
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            font-size: 11px;
-            color: #94a3b8;
-        }
-
-        .landing-footer {
-            position: relative;
-            z-index: 10;
-            padding: 24px;
-            border-top: 1px solid #e2e8f0;
-            background: rgba(255,255,255,0.5);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-            color: #64748b;
-        }
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #22c55e;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
-            70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-        }
-
-        /* --- TICKET PAGE STYLES --- */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f8f9fa; color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+        #landing-page { display: none; flex-direction: column; min-height: 100vh; background: linear-gradient(to bottom, #ffffff 0%, #f3f4f6 100%); color: #0f172a; position: relative; overflow: hidden; }
+        .bg-overlay { position: absolute; inset: 0; background-image: radial-gradient(#e5e7eb 1px, transparent 1px); background-size: 24px 24px; opacity: 0.5; pointer-events: none; z-index: 0; }
+        .nav-container { position: relative; z-index: 10; max-width: 1280px; margin: 0 auto; width: 100%; padding: 24px; display: flex; align-items: center; gap: 12px; }
+        .nav-icon-box { background: rgba(2, 108, 223, 0.1); padding: 8px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .nav-text { font-weight: 600; font-size: 18px; letter-spacing: -0.5px; color: #0f172a; }
+        .hero-container { position: relative; z-index: 10; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .secure-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; background: rgba(2, 108, 223, 0.05); border: 1px solid rgba(2, 108, 223, 0.2); border-radius: 99px; color: #026cdf; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 24px; }
+        .hero-title { font-size: 36px; font-weight: 800; letter-spacing: -1px; color: #0f172a; margin-bottom: 12px; }
+        .hero-desc { font-size: 16px; color: #64748b; max-width: 400px; line-height: 1.6; margin-bottom: 32px; }
+        .login-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(226, 232, 240, 0.8); border-radius: 16px; padding: 32px; width: 100%; max-width: 400px; box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1); }
+        .input-group { position: relative; margin-bottom: 16px; }
+        .input-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: #94a3b8; }
+        .login-input { width: 100%; padding: 12px 12px 12px 40px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; outline: none; transition: all 0.2s; background: rgba(255,255,255,0.5); }
+        .login-input:focus { border-color: #026cdf; box-shadow: 0 0 0 3px rgba(2, 108, 223, 0.1); }
+        .login-btn { width: 100%; padding: 12px; background: #0f172a; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .login-btn:hover { background: #1e293b; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.2); }
+        .ssl-text { margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: #94a3b8; }
+        .landing-footer { position: relative; z-index: 10; padding: 24px; border-top: 1px solid #e2e8f0; background: rgba(255,255,255,0.5); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #64748b; }
+        .status-dot { width: 8px; height: 8px; background-color: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); } 70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
         #ticket-page { display: none; flex-direction: column; min-height: 100vh; background-color: #f4f4f4; }
-
         .ticket-top-bar { background-color: #026cdf; color: white; text-align: center; padding: 15px 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .event-title { font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
         .event-date { font-size: 11px; font-weight: 500; opacity: 0.95; }
         .event-venue { font-size: 10px; font-weight: 400; opacity: 0.85; margin-top: 3px; }
-
         .ticket-container { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
-
         .ticket-card { width: 100%; max-width: 340px; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
-
         .card-header { background-color: #026cdf; color: white; padding-top: 15px; }
         .admission-type { font-size: 12px; font-weight: 500; display: flex; justify-content: center; align-items: center; gap: 5px; margin-bottom: 15px; }
         .info-icon { border: 1px solid white; border-radius: 50%; width: 14px; height: 14px; font-size: 10px; line-height: 14px; display: inline-block; }
-
         .seat-grid { display: flex; justify-content: space-between; padding: 0 20px 20px 20px; }
         .seat-item { text-align: center; width: 33%; }
         .seat-label { font-size: 10px; text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
         .seat-value { font-size: 22px; font-weight: 800; }
-
         .sub-location { background-color: #005bb5; color: white; font-size: 11px; font-weight: 600; text-transform: uppercase; padding: 8px 0; }
-
         .card-body { padding: 20px; min-height: 280px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .barcode-message { color: #555; font-size: 12px; line-height: 1.5; max-width: 220px; }
-
-        /* --- BARCODE CONTAINER WITH ROTATING ANIMATION --- */
-        .barcode-wrapper {
-            position: relative;
-            width: 260px;
-            height: 260px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .barcode-container {
-            position: relative;
-            width: 246px;
-            height: 246px;
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            z-index: 1;
-        }
-
-        /* Rotating gradient border animation */
-        .barcode-container::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            background: conic-gradient(
-                from 0deg,
-                #026cdf 0deg,
-                #026cdf 90deg,
-                transparent 90deg,
-                transparent 360deg
-            );
-            animation: rotate 3s infinite linear;
-            z-index: -1;
-            border-radius: 10px;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .barcode-inner {
-            width: 240px;
-            height: 240px;
-            background: white;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .barcode-inner canvas {
-            max-width: 220px;
-            max-height: 100px;
-        }
-
-        .barcode-timer {
-            margin-top: 12px;
-            font-size: 11px;
-            color: #666;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .timer-dot {
-            width: 6px;
-            height: 6px;
-            background: #22c55e;
-            border-radius: 50%;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        /* Navigation Buttons */
+        .barcode-wrapper { position: relative; width: 260px; height: 260px; display: flex; align-items: center; justify-content: center; }
+        .barcode-container { position: relative; width: 246px; height: 246px; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: white; z-index: 1; }
+        .barcode-container::before { content: ''; position: absolute; inset: -3px; background: conic-gradient(from 0deg, #026cdf 0deg, #026cdf 90deg, transparent 90deg, transparent 360deg); animation: rotate 3s infinite linear; z-index: -1; border-radius: 10px; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .barcode-inner { width: 240px; height: 240px; background: white; border-radius: 6px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .barcode-inner canvas { max-width: 220px; max-height: 100px; }
+        .barcode-timer { margin-top: 12px; font-size: 11px; color: #666; display: flex; align-items: center; gap: 6px; }
+        .timer-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
         .pagination { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; width: 340px; font-size: 14px; }
         .pagination button { background-color: #026cdf; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s; }
         .pagination button:disabled { background-color: #ccc; cursor: not-allowed; }
         .pagination button:hover:not(:disabled) { background-color: #005bb5; }
-
-        /* Add to Wallet Button */
-        .wallet-btn {
-            margin-top: 15px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: #000;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .wallet-btn:hover {
-            background: #333;
-        }
     </style>
 </head>
 <body>
-
     <div id="landing-page">
         <div class="bg-overlay"></div>
-
         <nav class="nav-container">
-            <div class="nav-icon-box">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#026cdf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-            </div>
+            <div class="nav-icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#026cdf" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
             <span class="nav-text">Secured Ticket Access</span>
         </nav>
-
         <div class="hero-container">
-            <div class="secure-badge">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                <span>Secured Portal</span>
-            </div>
-
+            <div class="secure-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg><span>Secured Portal</span></div>
             <h1 class="hero-title">Ticket Access Portal</h1>
             <p class="hero-desc">Welcome to the secured ticket access transfer portal. Access is restricted to verified ticket holders via personalized links only.</p>
-
             <div class="login-card">
-                <div style="text-align: left; margin-bottom: 20px;">
-                    <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 4px;">Have an invite?</h3>
-                    <p style="font-size: 12px; color: #64748b;">Please login using your unique invite code.</p>
-                </div>
-
+                <div style="text-align: left; margin-bottom: 20px;"><h3 style="font-size: 14px; font-weight: 600; margin-bottom: 4px;">Have an invite?</h3><p style="font-size: 12px; color: #64748b;">Please login using your unique invite code.</p></div>
                 <form id="invite-form" onsubmit="handleLogin(event)">
-                    <div class="input-group">
-                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"></circle><path d="m21 2-9.6 9.6"></path><path d="m15.5 7.5 3 3L22 7l-3-3"></path></svg>
-                        <input type="text" class="login-input" placeholder="Enter your invite code" required>
-                    </div>
-                    <button type="submit" class="login-btn" id="login-btn">
-                        <span>Access Portal</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </button>
+                    <div class="input-group"><svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7.5" cy="15.5" r="5.5"></circle><path d="m21 2-9.6 9.6"></path><path d="m15.5 7.5 3 3L22 7l-3-3"></path></svg><input type="text" class="login-input" placeholder="Enter your invite code" required></div>
+                    <button type="submit" class="login-btn"><span>Access Portal</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>
                 </form>
-
-                <div class="ssl-text">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                    <span>256-bit SSL Secured Connection</span>
-                </div>
+                <div class="ssl-text"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><span>256-bit SSL Secured Connection</span></div>
             </div>
         </div>
-
-        <footer class="landing-footer">
-            <p>&copy; 2025 Secured Ticket Access Inc.</p>
-            <div style="display: flex; align-items: center; gap: 6px;">
-                <div class="status-dot"></div>
-                <span>Systems Operational</span>
-            </div>
-        </footer>
+        <footer class="landing-footer"><p>&copy; 2025 Secured Ticket Access Inc.</p><div style="display: flex; align-items: center; gap: 6px;"><div class="status-dot"></div><span>Systems Operational</span></div></footer>
     </div>
-
     <div id="ticket-page">
         <div class="ticket-top-bar">
             <div class="event-title" id="event-name">Loading...</div>
             <div class="event-date" id="event-details">...</div>
             <div class="event-venue" id="event-venue"></div>
         </div>
-
         <div class="ticket-container">
             <div class="ticket-card">
                 <div class="card-header">
-                    <div class="admission-type">
-                        <span id="admission-type">Standard Admission</span>
-                        <span class="info-icon">i</span>
-                    </div>
+                    <div class="admission-type"><span id="admission-type">Standard Admission</span><span class="info-icon">i</span></div>
                     <div class="seat-grid">
-                        <div class="seat-item">
-                            <div class="seat-label">SEC</div>
-                            <div class="seat-value" id="sec-val">--</div>
-                        </div>
-                        <div class="seat-item">
-                            <div class="seat-label">ROW</div>
-                            <div class="seat-value" id="row-val">--</div>
-                        </div>
-                        <div class="seat-item">
-                            <div class="seat-label">SEAT</div>
-                            <div class="seat-value" id="seat-val">--</div>
-                        </div>
+                        <div class="seat-item"><div class="seat-label">SEC</div><div class="seat-value" id="sec-val">--</div></div>
+                        <div class="seat-item"><div class="seat-label">ROW</div><div class="seat-value" id="row-val">--</div></div>
+                        <div class="seat-item"><div class="seat-label">SEAT</div><div class="seat-value" id="seat-val">--</div></div>
                     </div>
                     <div class="sub-location" id="location-sub">General Admission</div>
                 </div>
-                <div class="card-body">
-                    <div id="barcode-area">
-                        <div class="barcode-message" id="barcode-message">
-                            PLEASE REFRESH PAGE 24 HOURS BEFORE EVENT TO VIEW BARCODE
-                        </div>
-                    </div>
-                </div>
+                <div class="card-body"><div id="barcode-area"><div class="barcode-message" id="barcode-message">PLEASE REFRESH PAGE 24 HOURS BEFORE EVENT TO VIEW BARCODE</div></div></div>
             </div>
-
             <div class="pagination" id="nav-container" style="display: none;">
                 <button id="prev-btn" disabled>&lt; Previous</button>
                 <span id="page-counter">Loading...</span>
@@ -449,497 +109,26 @@
             </div>
         </div>
     </div>
-
     <script>
-        // ============================================
-        // TOTP IMPLEMENTATION (RFC 6238)
-        // ============================================
+        async function hmacSha1(key, message) { const cryptoKey = await crypto.subtle.importKey('raw', key, { name: 'HMAC', hash: 'SHA-1' }, false, ['sign']); return new Uint8Array(await crypto.subtle.sign('HMAC', cryptoKey, message)); }
+        async function generateTOTP(secret, timestamp, period = 15) { const counter = Math.floor(timestamp / 1000 / period); const counterBytes = new Uint8Array(8); let temp = counter; for (let i = 7; i >= 0; i--) { counterBytes[i] = temp & 0xff; temp = Math.floor(temp / 256); } const hmac = await hmacSha1(secret, counterBytes); const offset = hmac[hmac.length - 1] & 0x0f; const code = (((hmac[offset] & 0x7f) << 24) | ((hmac[offset + 1] & 0xff) << 16) | ((hmac[offset + 2] & 0xff) << 8) | (hmac[offset + 3] & 0xff)) % 1000000; return code.toString().padStart(6, '0'); }
+        function hexToBytes(hex) { const bytes = new Uint8Array(hex.length / 2); for (let i = 0; i < hex.length; i += 2) bytes[i / 2] = parseInt(hex.substr(i, 2), 16); return bytes; }
+        let barcodeInterval = null, currentToken = null, currentOrderTickets = [], currentTicketId = null, currentOrderId = null;
+        async function generateSignedToken(tokenData, timestamp) { const { t: bearerKey, ck, ek } = tokenData; const secs = Math.floor(timestamp / 1000); const eventOTP = await generateTOTP(hexToBytes(ek), timestamp, 15); const customerOTP = await generateTOTP(hexToBytes(ck), timestamp, 15); return [bearerKey, eventOTP, customerOTP, secs].join('::'); }
+        async function renderBarcode(barcodeData) { const barcodeArea = document.getElementById('barcode-area'); if (!document.getElementById('barcode-canvas')) { barcodeArea.innerHTML = '<div class="barcode-wrapper"><div class="barcode-container"><div class="barcode-inner"><canvas id="barcode-canvas"></canvas></div></div></div><div class="barcode-timer"><span class="timer-dot"></span><span id="timer-text">Refreshing...</span></div>'; } try { bwipjs.toCanvas('barcode-canvas', { bcid: 'pdf417', text: barcodeData, scale: 2, height: 15, includetext: false, padding: 5 }); const now = Date.now(), nextRefresh = Math.ceil(now / 15000) * 15000; document.getElementById('timer-text').textContent = 'Refreshes in ' + Math.ceil((nextRefresh - now) / 1000) + 's'; } catch (e) { console.error('Barcode error:', e); } }
+        async function startBarcodeRotation(token) { currentToken = token; let tokenData; try { tokenData = JSON.parse(atob(token)); } catch (e) { return; } if (barcodeInterval) clearInterval(barcodeInterval); async function updateBarcode() { const signedToken = await generateSignedToken(tokenData, Date.now()); await renderBarcode(signedToken); } await updateBarcode(); barcodeInterval = setInterval(async () => { const now = Date.now(), currentPeriod = Math.floor(now / 15000), lastPeriod = Math.floor((now - 500) / 15000); const timerEl = document.getElementById('timer-text'); if (timerEl) timerEl.textContent = 'Refreshes in ' + Math.ceil((Math.ceil(now / 15000) * 15000 - now) / 1000) + 's'; if (currentPeriod !== lastPeriod) await updateBarcode(); }, 500); }
+        function renderTicket(ticket) { document.getElementById('event-name').textContent = ticket.event || ticket.eventName || 'Event Details'; document.getElementById('event-details').textContent = ticket.date || ''; const venueEl = document.getElementById('event-venue'); if (ticket.venue) { venueEl.textContent = ticket.venue; venueEl.style.display = 'block'; } else { venueEl.style.display = 'none'; } document.getElementById('sec-val').textContent = ticket.sec || ticket.section || '--'; document.getElementById('row-val').textContent = ticket.row || '--'; document.getElementById('seat-val').textContent = ticket.seat || '--'; document.getElementById('location-sub').textContent = ticket.loc || ticket.venue || 'VENUE INFO'; document.getElementById('admission-type').textContent = ticket.type || 'Standard Admission'; if (ticket.token && !ticket.token.startsWith('pending_')) { startBarcodeRotation(ticket.token); } else { document.getElementById('barcode-area').innerHTML = '<div class="barcode-message">PLEASE REFRESH PAGE 24 HOURS BEFORE EVENT TO VIEW BARCODE</div>'; } }
 
-        // HMAC-SHA1 implementation
-        async function hmacSha1(key, message) {
-            const cryptoKey = await crypto.subtle.importKey(
-                'raw',
-                key,
-                { name: 'HMAC', hash: 'SHA-1' },
-                false,
-                ['sign']
-            );
-            const signature = await crypto.subtle.sign('HMAC', cryptoKey, message);
-            return new Uint8Array(signature);
-        }
-
-        // Generate TOTP code
-        async function generateTOTP(secret, timestamp, period = 15) {
-            const counter = Math.floor(timestamp / 1000 / period);
-
-            // Convert counter to 8-byte big-endian
-            const counterBytes = new Uint8Array(8);
-            let temp = counter;
-            for (let i = 7; i >= 0; i--) {
-                counterBytes[i] = temp & 0xff;
-                temp = Math.floor(temp / 256);
-            }
-
-            const hmac = await hmacSha1(secret, counterBytes);
-
-            // Dynamic truncation
-            const offset = hmac[hmac.length - 1] & 0x0f;
-            const code = (
-                ((hmac[offset] & 0x7f) << 24) |
-                ((hmac[offset + 1] & 0xff) << 16) |
-                ((hmac[offset + 2] & 0xff) << 8) |
-                (hmac[offset + 3] & 0xff)
-            ) % 1000000;
-
-            return code.toString().padStart(6, '0');
-        }
-
-        // Convert hex string to Uint8Array
-        function hexToBytes(hex) {
-            const bytes = new Uint8Array(hex.length / 2);
-            for (let i = 0; i < hex.length; i += 2) {
-                bytes[i / 2] = parseInt(hex.substr(i, 2), 16);
-            }
-            return bytes;
-        }
-
-        // ============================================
-        // SAFETIX BARCODE GENERATION
-        // ============================================
-
-        let barcodeInterval = null;
-        let currentToken = null;
-
-        async function generateSignedToken(tokenData, timestamp) {
-            const { t: bearerKey, ck, ek } = tokenData;
-
-            const customerKey = hexToBytes(ck);
-            const eventKey = hexToBytes(ek);
-
-            const secs = Math.floor(timestamp / 1000);
-
-            const eventOTP = await generateTOTP(eventKey, timestamp, 15);
-            const customerOTP = await generateTOTP(customerKey, timestamp, 15);
-
-            // Format: bearerKey::eventOTP::customerOTP::timestamp
-            return [bearerKey, eventOTP, customerOTP, secs].join('::');
-        }
-
-        async function renderBarcode(barcodeData) {
-            const barcodeArea = document.getElementById('barcode-area');
-
-            // Create barcode structure if not exists
-            if (!document.getElementById('barcode-canvas')) {
-                barcodeArea.innerHTML = `
-                    <div class="barcode-wrapper">
-                        <div class="barcode-container">
-                            <div class="barcode-inner">
-                                <canvas id="barcode-canvas"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="barcode-timer">
-                        <span class="timer-dot"></span>
-                        <span id="timer-text">Refreshing...</span>
-                    </div>
-                `;
-            }
-
-            try {
-                // Generate PDF417 barcode using bwip-js
-                bwipjs.toCanvas('barcode-canvas', {
-                    bcid: 'pdf417',
-                    text: barcodeData,
-                    scale: 2,
-                    height: 15,
-                    includetext: false,
-                    padding: 5
-                });
-
-                // Update timer
-                const now = Date.now();
-                const nextRefresh = Math.ceil(now / 15000) * 15000;
-                const secondsUntilRefresh = Math.ceil((nextRefresh - now) / 1000);
-                document.getElementById('timer-text').textContent = `Refreshes in ${secondsUntilRefresh}s`;
-
-            } catch (e) {
-                console.error('Barcode generation failed:', e);
-            }
-        }
-
-        async function startBarcodeRotation(token) {
-            currentToken = token;
-
-            // Parse the token
-            let tokenData;
-            try {
-                tokenData = JSON.parse(atob(token));
-            } catch (e) {
-                console.error('Invalid token format');
-                return;
-            }
-
-            // Clear existing interval
-            if (barcodeInterval) {
-                clearInterval(barcodeInterval);
-            }
-
-            // Generate and render barcode
-            async function updateBarcode() {
-                const timestamp = Date.now();
-                const signedToken = await generateSignedToken(tokenData, timestamp);
-                await renderBarcode(signedToken);
-            }
-
-            // Initial render
-            await updateBarcode();
-
-            // Update every 500ms to keep timer accurate and catch 15-second boundaries
-            barcodeInterval = setInterval(async () => {
-                const now = Date.now();
-                const currentPeriod = Math.floor(now / 15000);
-                const lastPeriod = Math.floor((now - 500) / 15000);
-
-                // Update timer display
-                const nextRefresh = Math.ceil(now / 15000) * 15000;
-                const secondsUntilRefresh = Math.ceil((nextRefresh - now) / 1000);
-                const timerEl = document.getElementById('timer-text');
-                if (timerEl) {
-                    timerEl.textContent = `Refreshes in ${secondsUntilRefresh}s`;
-                }
-
-                // If we crossed a 15-second boundary, regenerate barcode
-                if (currentPeriod !== lastPeriod) {
-                    await updateBarcode();
-                }
-            }, 500);
-        }
-
-        // ============================================
-        // TICKET DISPLAY LOGIC
-        // ============================================
-
-        let currentOrderTickets = [];
-        let currentTicketId = null;
-        let currentOrderId = null;
-
-        function renderTicket(ticket) {
-            // Set event name - use actual name, not just "Event"
-            const eventName = ticket.event || ticket.eventName || ticket.name || '';
-            document.getElementById('event-name').textContent = eventName || 'Event Details';
-
-            // Set event date
-            const eventDate = ticket.date || ticket.eventDate || '';
-            document.getElementById('event-details').textContent = eventDate || '';
-
-            // Set venue info
-            const venue = ticket.venue || ticket.venueName || ticket.loc || '';
-            const venueEl = document.getElementById('event-venue');
-            if (venue && venue !== ticket.loc) {
-                venueEl.textContent = venue;
-                venueEl.style.display = 'block';
-            } else {
-                venueEl.style.display = 'none';
-            }
-
-            // Set seat info
-            document.getElementById('sec-val').textContent = ticket.sec || ticket.section || '--';
-            document.getElementById('row-val').textContent = ticket.row || '--';
-            document.getElementById('seat-val').textContent = ticket.seat || '--';
-            document.getElementById('location-sub').textContent = ticket.loc || ticket.venue || 'VENUE INFO';
-            document.getElementById('admission-type').textContent = ticket.type || 'Standard Admission';
-
-            // Handle barcode/token
-            if (ticket.token) {
-                startBarcodeRotation(ticket.token);
-            } else {
-                // Show placeholder message
-                document.getElementById('barcode-area').innerHTML = `
-                    <div class="barcode-message">
-                        PLEASE REFRESH PAGE 24 HOURS BEFORE EVENT TO VIEW BARCODE
-                    </div>
-                `;
-            }
-        }
-
-        // Server URLs for fetching ticket data
-        // Use ngrok directly (permanent domain - no proxy needed)
-        const PROXY_URL = 'https://secured-tickets-access.ngrok.io/api/shorten';
+        // VPS server URL (always online!)
+        const PROXY_URL = 'http://167.71.166.224:3847/api/shorten';
         const LOCAL_SERVER_URL = 'http://localhost:3847/api/shorten';
 
-        async function setupSystem() {
-            const params = new URLSearchParams(window.location.search);
-
-            const hasParams = params.has('id') || params.has('event') || params.has('token') || params.has('data') || params.has('t');
-
-            if (hasParams) {
-                document.getElementById('landing-page').style.display = 'none';
-                document.getElementById('ticket-page').style.display = 'flex';
-
-                if (params.get('t') && params.get('data')) {
-                    // Short link with embedded data (preferred - works offline)
-                    startEmbeddedDataMode(params);
-                } else if (params.get('t')) {
-                    // Short link mode - fetch from server (requires proxy)
-                    await startShortLinkMode(params.get('t'));
-                } else if (params.get('id') && params.get('data')) {
-                    // New embedded data mode with UUID-style ID
-                    // URL format: ?id=UUID&data=base64EncodedTickets
-                    startEmbeddedDataMode(params);
-                } else if (params.get('data')) {
-                    // Encoded multi-ticket data from extension
-                    startEncodedMode(params);
-                } else if (params.get('token')) {
-                    // Direct token mode (single ticket from extension)
-                    startTokenMode(params);
-                } else if (params.get('id') && params.get('ord')) {
-                    // Database mode (existing system)
-                    startDatabaseMode(params);
-                } else {
-                    // Direct mode (URL params)
-                    startDirectMode(params);
-                }
-            } else {
-                document.getElementById('landing-page').style.display = 'flex';
-                document.getElementById('ticket-page').style.display = 'none';
-            }
-        }
-
-        // New mode: Embedded data with UUID-style ID in URL
-        function startEmbeddedDataMode(params) {
-            try {
-                const linkId = params.get('t') || params.get('id');
-                const encodedData = params.get('data');
-
-                // Decode base64url data
-                const jsonStr = atob(encodedData.replace(/-/g, '+').replace(/_/g, '/'));
-                const data = JSON.parse(jsonStr);
-
-                currentOrderId = linkId;
-                currentOrderTickets = data.tickets || [];
-
-                if (currentOrderTickets.length > 0) {
-                    currentTicketId = currentOrderTickets[0].id || linkId + '-0';
-                    renderTicket(currentOrderTickets[0]);
-
-                    if (currentOrderTickets.length > 1) {
-                        document.getElementById('nav-container').style.display = 'flex';
-                        setupNavigation();
-                    } else {
-                        document.getElementById('nav-container').style.display = 'none';
-                    }
-                }
-            } catch (e) {
-                console.error('Failed to parse embedded data:', e);
-                document.getElementById('event-name').textContent = 'Link Error';
-                document.getElementById('event-details').textContent = 'Invalid ticket data.';
-            }
-        }
-
-        // New mode: Short link - fetch ticket data from server
-        // Tries production proxy first, then falls back to localhost
-        async function startShortLinkMode(shortId) {
-            // Show loading state
-            document.getElementById('event-name').textContent = 'Loading...';
-            document.getElementById('event-details').textContent = 'Fetching ticket data...';
-
-            let data = null;
-            let error = null;
-
-            // Try proxy first (production server)
-            try {
-                const proxyResponse = await fetch(`${PROXY_URL}/${shortId}`, {
-                    mode: 'cors',
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (proxyResponse.ok) {
-                    data = await proxyResponse.json();
-                    console.log('[Ticket] Loaded from proxy');
-                }
-            } catch (e) {
-                console.log('[Ticket] Proxy unavailable, trying localhost...');
-            }
-
-            // Fall back to localhost if proxy failed
-            if (!data || !data.success) {
-                try {
-                    const localResponse = await fetch(`${LOCAL_SERVER_URL}/${shortId}`);
-                    if (localResponse.ok) {
-                        data = await localResponse.json();
-                        console.log('[Ticket] Loaded from localhost');
-                    }
-                } catch (e) {
-                    error = e;
-                    console.log('[Ticket] Localhost unavailable');
-                }
-            }
-
-            // Handle result
-            if (data && data.success && data.tickets && data.tickets.length > 0) {
-                currentOrderTickets = data.tickets;
-                currentOrderId = shortId;
-                currentTicketId = currentOrderTickets[0].id || shortId + '-0';
-                renderTicket(currentOrderTickets[0]);
-
-                if (currentOrderTickets.length > 1) {
-                    document.getElementById('nav-container').style.display = 'flex';
-                    setupNavigation();
-                } else {
-                    document.getElementById('nav-container').style.display = 'none';
-                }
-            } else {
-                console.error('Failed to load short link:', error);
-                document.getElementById('event-name').textContent = 'Link Error';
-                document.getElementById('event-details').textContent = 'This ticket link may have expired or is invalid.';
-                const canvas = document.getElementById('barcode-canvas');
-                if (canvas) canvas.style.display = 'none';
-            }
-        }
-
-        // New mode: Handle encoded data from extension
-        function startEncodedMode(params) {
-            try {
-                const data = JSON.parse(atob(params.get('data')));
-                currentOrderId = data.ord;
-                currentOrderTickets = data.tickets;
-
-                if (currentOrderTickets.length > 0) {
-                    currentTicketId = currentOrderTickets[0].id;
-                    renderTicket(currentOrderTickets[0]);
-
-                    if (currentOrderTickets.length > 1) {
-                        document.getElementById('nav-container').style.display = 'flex';
-                        setupNavigation();
-                    }
-                }
-            } catch (e) {
-                console.error('Failed to parse encoded data:', e);
-                alert('Invalid ticket data');
-            }
-        }
-
-        // New mode: Single ticket with token
-        function startTokenMode(params) {
-            document.getElementById('nav-container').style.display = 'none';
-
-            const ticket = {
-                token: params.get('token'),
-                event: params.get('event') || '',
-                date: params.get('date') || '',
-                sec: params.get('sec') || '',
-                row: params.get('row') || '',
-                seat: params.get('seat') || '',
-                loc: params.get('loc') || '',
-                venue: params.get('venue') || '',
-                type: params.get('type') || 'Standard Admission'
-            };
-
-            renderTicket(ticket);
-        }
-
-        function handleLogin(event) {
-            event.preventDefault();
-            const btn = document.getElementById('login-btn');
-            const originalText = btn.innerHTML;
-
-            btn.innerHTML = 'Verifying...';
-            btn.style.opacity = '0.7';
-
-            setTimeout(() => {
-                alert("Invalid invite code. Access Denied.");
-                btn.innerHTML = originalText;
-                btn.style.opacity = '1';
-            }, 1000);
-        }
-
-        async function startDatabaseMode(params) {
-            currentOrderId = params.get('ord');
-            currentTicketId = params.get('id');
-            document.getElementById('nav-container').style.display = 'flex';
-
-            if (!currentOrderId) return;
-
-            try {
-                const dbFileName = 'bc7a3d75-ee17-4816-afe4-4ae2d20ad056.json';
-                const response = await fetch(dbFileName + '?v=' + new Date().getTime());
-
-                if (!response.ok) throw new Error("Database not found");
-
-                const allOrdersData = await response.json();
-                currentOrderTickets = allOrdersData[currentOrderId];
-
-                if (!currentOrderTickets) {
-                    alert("Order Not Found");
-                    return;
-                }
-
-                let initialTicket = currentOrderTickets.find(t => t.id === currentTicketId);
-                if (!initialTicket) {
-                    initialTicket = currentOrderTickets[0];
-                    currentTicketId = initialTicket.id;
-                }
-
-                renderTicket(initialTicket);
-                setupNavigation();
-
-            } catch (error) {
-                console.error(error);
-                alert("Error Loading Data");
-            }
-        }
-
-        function startDirectMode(params) {
-            document.getElementById('nav-container').style.display = 'none';
-            const directTicket = {
-                event: params.get('event'),
-                date: params.get('date'),
-                sec: params.get('sec'),
-                row: params.get('row'),
-                seat: params.get('seat'),
-                loc: params.get('loc'),
-                venue: params.get('venue'),
-                type: params.get('type'),
-                token: params.get('token') || null
-            };
-            renderTicket(directTicket);
-        }
-
-        function setupNavigation() {
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            const counter = document.getElementById('page-counter');
-
-            let currentIndex = currentOrderTickets.findIndex(ticket => ticket.id === currentTicketId);
-            let totalTickets = currentOrderTickets.length;
-
-            counter.textContent = `${currentIndex + 1} of ${totalTickets}`;
-            prevBtn.disabled = currentIndex === 0;
-            nextBtn.disabled = currentIndex === totalTickets - 1;
-
-            prevBtn.onclick = () => navigate(-1);
-            nextBtn.onclick = () => navigate(1);
-        }
-
-        function navigate(direction) {
-            let currentIndex = currentOrderTickets.findIndex(ticket => ticket.id === currentTicketId);
-            let newIndex = currentIndex + direction;
-
-            if (newIndex >= 0 && newIndex < currentOrderTickets.length) {
-                const newTicket = currentOrderTickets[newIndex];
-                const newTicketId = newTicket.id;
-
-                const newUrl = new URL(window.location);
-                newUrl.searchParams.set('ord', currentOrderId);
-                newUrl.searchParams.set('id', newTicketId);
-                history.pushState(null, '', newUrl.toString());
-
-                currentTicketId = newTicketId;
-                renderTicket(newTicket);
-                setupNavigation();
-            }
-        }
-
-        // Run
+        async function setupSystem() { const params = new URLSearchParams(window.location.search); const hasParams = params.has('t') || params.has('id') || params.has('token') || params.has('data'); if (hasParams) { document.getElementById('landing-page').style.display = 'none'; document.getElementById('ticket-page').style.display = 'flex'; if (params.get('t')) { await startShortLinkMode(params.get('t')); } else if (params.get('data')) { startEmbeddedDataMode(params); } else if (params.get('token')) { startTokenMode(params); } } else { document.getElementById('landing-page').style.display = 'flex'; document.getElementById('ticket-page').style.display = 'none'; } }
+        function startEmbeddedDataMode(params) { try { const jsonStr = atob(params.get('data').replace(/-/g, '+').replace(/_/g, '/')); const data = JSON.parse(jsonStr); currentOrderTickets = data.tickets || []; if (currentOrderTickets.length > 0) { renderTicket(currentOrderTickets[0]); if (currentOrderTickets.length > 1) { document.getElementById('nav-container').style.display = 'flex'; setupNavigation(); } } } catch (e) { console.error('Parse error:', e); } }
+        async function startShortLinkMode(shortId) { document.getElementById('event-name').textContent = 'Loading...'; document.getElementById('event-details').textContent = 'Fetching ticket data...'; let data = null; try { const r = await fetch(PROXY_URL + '/' + shortId); if (r.ok) data = await r.json(); } catch (e) { console.log('Proxy failed, trying localhost'); } if (!data || !data.success) { try { const r = await fetch(LOCAL_SERVER_URL + '/' + shortId); if (r.ok) data = await r.json(); } catch (e) { console.log('Localhost failed'); } } if (data && data.success && data.tickets && data.tickets.length > 0) { currentOrderTickets = data.tickets; currentOrderId = shortId; renderTicket(currentOrderTickets[0]); if (currentOrderTickets.length > 1) { document.getElementById('nav-container').style.display = 'flex'; setupNavigation(); } } else { document.getElementById('event-name').textContent = 'Link Error'; document.getElementById('event-details').textContent = 'This ticket link may have expired or is invalid.'; } }
+        function startTokenMode(params) { renderTicket({ token: params.get('token'), event: params.get('event') || '', date: params.get('date') || '', sec: params.get('sec') || '', row: params.get('row') || '', seat: params.get('seat') || '', loc: params.get('loc') || '', venue: params.get('venue') || '', type: params.get('type') || 'Standard Admission' }); }
+        function handleLogin(event) { event.preventDefault(); const btn = document.getElementById('login-btn'); btn.innerHTML = 'Verifying...'; setTimeout(() => { alert("Invalid invite code."); btn.innerHTML = 'Access Portal'; }, 1000); }
+        function setupNavigation() { const prevBtn = document.getElementById('prev-btn'), nextBtn = document.getElementById('next-btn'), counter = document.getElementById('page-counter'); let idx = 0; counter.textContent = (idx + 1) + ' of ' + currentOrderTickets.length; prevBtn.disabled = idx === 0; nextBtn.disabled = idx === currentOrderTickets.length - 1; prevBtn.onclick = () => { if (idx > 0) { idx--; renderTicket(currentOrderTickets[idx]); counter.textContent = (idx + 1) + ' of ' + currentOrderTickets.length; prevBtn.disabled = idx === 0; nextBtn.disabled = false; } }; nextBtn.onclick = () => { if (idx < currentOrderTickets.length - 1) { idx++; renderTicket(currentOrderTickets[idx]); counter.textContent = (idx + 1) + ' of ' + currentOrderTickets.length; prevBtn.disabled = false; nextBtn.disabled = idx === currentOrderTickets.length - 1; } }; }
         setupSystem();
     </script>
 </body>

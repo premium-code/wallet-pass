@@ -653,13 +653,31 @@
             if (ticket.token) {
                 startBarcodeRotation(ticket.token);
             } else {
-                // Show placeholder message
+                // Show placeholder message - varies by event
+                const msg = getBarcodelessMessage(ticket);
                 document.getElementById('barcode-area').innerHTML = `
                     <div class="barcode-message">
-                        PLEASE REFRESH PAGE 24 HOURS BEFORE EVENT TO VIEW BARCODE
+                        ${msg}
                     </div>
                 `;
             }
+        }
+
+        // Barcodeless messaging: some events were fulfilled by direct email
+        // (tickets are not hosted here at all), so the "refresh 24 hours before"
+        // copy is misleading. Show an email-delivery notice for those events
+        // and keep the default message for everything else.
+        function getBarcodelessMessage(ticket) {
+            const event = String(ticket.event || ticket.eventName || ticket.name || '').toLowerCase();
+            const emailedEvents = [
+                'live between the hedges',
+                'bruno mars',
+                'george strait'
+            ];
+            if (emailedEvents.some(e => event.includes(e))) {
+                return 'TICKETS HAVE BEEN SENT DIRECTLY TO THE EMAIL ON THE PURCHASE ORDER';
+            }
+            return 'PLEASE REFRESH PAGE 24 HOURS BEFORE EVENT TO VIEW BARCODE';
         }
 
         // Short-link resolution.

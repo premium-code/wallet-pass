@@ -1610,6 +1610,62 @@ async function handleRequest(req, res) {
             return;
         }
 
+        // PUT /api/shorten/:id - Replace tickets on an existing short link.
+        // Used by the extension's "Override Existing Link" flow when the
+        // operator captures real barcodes for a previously-barcodeless link.
+        // Preserves the original id, createdAt, and accessCount so the
+        // shareable URL stays valid for whoever already received it.
+        if (pathname.startsWith('/api/shorten/') && req.method === 'PUT') {
+            // requiresAuth() exempts /api/shorten/:id for public viewing; PUT
+            // is a write and must be authenticated.
+            if (!isAuthenticated(req)) {
+                res.writeHead(401, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ success: false, error: 'Authentication required' }));
+                return;
+            }
+
+            const shortId = pathname.split('/')[3];
+            const body = await parseBody(req);
+
+            if (!body.tickets || !Array.isArray(body.tickets) || body.tickets.length === 0) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ success: false, error: 'No tickets provided' }));
+                return;
+            }
+
+            if (!shortLinks[shortId]) {
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ success: false, error: 'Short link not found' }));
+                return;
+            }
+
+            const existing = shortLinks[shortId];
+            shortLinks[shortId] = {
+                id: existing.id,
+                tickets: body.tickets,
+                createdAt: existing.createdAt,
+                updatedAt: new Date().toISOString(),
+                accessCount: existing.accessCount,
+                lastAccessed: existing.lastAccessed,
+                eventName: body.tickets[0]?.event || body.tickets[0]?.eventName || existing.eventName || '',
+                eventDate: body.tickets[0]?.date || existing.eventDate || ''
+            };
+            saveShortLinks();
+
+            console.log(`[Short Link] Overrode: ${shortId} with ${body.tickets.length} ticket(s)`);
+
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
+                success: true,
+                shortId: shortId,
+                shortUrl: `${config.baseUrl}/index.html?t=${shortId}`,
+                ticketCount: body.tickets.length,
+                createdAt: shortLinks[shortId].createdAt,
+                updatedAt: shortLinks[shortId].updatedAt
+            }));
+            return;
+        }
+
         // DELETE /api/shorten/:id - Delete a short link
         if (pathname.startsWith('/api/shorten/') && req.method === 'DELETE') {
             const shortId = pathname.split('/')[3];

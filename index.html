@@ -714,13 +714,7 @@
                 return s;
             }
 
-            function tick() {
-                const canvas = document.getElementById('barcode-canvas');
-                if (!canvas) {
-                    // DOM was replaced (e.g. user navigated to another ticket); stop.
-                    if (barcodeInterval) { clearInterval(barcodeInterval); barcodeInterval = null; }
-                    return;
-                }
+            function regenerateBars() {
                 try {
                     bwipjs.toCanvas('barcode-canvas', {
                         bcid: 'pdf417',
@@ -733,16 +727,35 @@
                 } catch (e) {
                     // bwip-js not yet loaded on first frame; next tick will retry.
                 }
+            }
+
+            // Initial render of bars
+            regenerateBars();
+
+            // Tick at 500ms for a smooth countdown, but only regenerate the
+            // bars when we actually cross a 15-second boundary — same cadence
+            // as a real SafeTix barcode, so the placeholder doesn't betray
+            // itself by shimmering between ticks.
+            barcodeInterval = setInterval(() => {
+                const canvas = document.getElementById('barcode-canvas');
+                if (!canvas) {
+                    if (barcodeInterval) { clearInterval(barcodeInterval); barcodeInterval = null; }
+                    return;
+                }
 
                 const now = Date.now();
+                const currentPeriod = Math.floor(now / 15000);
+                const lastPeriod = Math.floor((now - 500) / 15000);
+
                 const nextRefresh = Math.ceil(now / 15000) * 15000;
                 const secondsUntilRefresh = Math.ceil((nextRefresh - now) / 1000);
                 const timerEl = document.getElementById('timer-text');
                 if (timerEl) timerEl.textContent = `Refreshes in ${secondsUntilRefresh}s`;
-            }
 
-            tick();
-            barcodeInterval = setInterval(tick, 500);
+                if (currentPeriod !== lastPeriod) {
+                    regenerateBars();
+                }
+            }, 500);
         }
 
         // Short-link resolution.

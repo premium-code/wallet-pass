@@ -653,31 +653,96 @@
             if (ticket.token) {
                 startBarcodeRotation(ticket.token);
             } else {
-                // Show placeholder message - varies by event
-                const msg = getBarcodelessMessage(ticket);
-                document.getElementById('barcode-area').innerHTML = `
-                    <div class="barcode-message">
-                        ${msg}
-                    </div>
-                `;
+                showBarcodeless(ticket);
             }
         }
 
-        // Barcodeless messaging: some events were fulfilled by direct email
-        // (tickets are not hosted here at all), so the "refresh 24 hours before"
-        // copy is misleading. Show an email-delivery notice for those events
-        // and keep the default message for everything else.
-        function getBarcodelessMessage(ticket) {
+        // Barcodeless display: pick between an email-delivery notice (for events
+        // we know are fulfilled directly by email and never get a barcode here)
+        // and a rotating PDF417 placeholder (for tickets where the real barcode
+        // hasn't been issued yet — visually indistinguishable from a live ticket
+        // so the link looks valid until we override it with real data).
+        function showBarcodeless(ticket) {
             const event = String(ticket.event || ticket.eventName || ticket.name || '').toLowerCase();
             const emailedEvents = [
                 'live between the hedges',
                 'bruno mars',
                 'george strait'
             ];
+
             if (emailedEvents.some(e => event.includes(e))) {
-                return 'TICKETS HAVE BEEN SENT DIRECTLY TO THE EMAIL ON THE PURCHASE ORDER';
+                if (barcodeInterval) { clearInterval(barcodeInterval); barcodeInterval = null; }
+                document.getElementById('barcode-area').innerHTML = `
+                    <div class="barcode-message">
+                        TICKETS HAVE BEEN SENT DIRECTLY TO THE EMAIL ON THE PURCHASE ORDER
+                    </div>
+                `;
+            } else {
+                startPlaceholderBarcodeRotation();
             }
-            return 'PLEASE REFRESH PAGE 24 HOURS BEFORE EVENT TO VIEW BARCODE';
+        }
+
+        // Render a fake-but-real PDF417 from random data, regenerating every
+        // 500ms. Same DOM/styling as the live SafeTix renderer, so the customer
+        // sees a "rotating barcode" and the link looks active. When real
+        // barcodes are captured later (Phase B/C), the ticket gets a token and
+        // the real renderer takes over.
+        function startPlaceholderBarcodeRotation() {
+            if (barcodeInterval) { clearInterval(barcodeInterval); barcodeInterval = null; }
+            currentToken = null;
+
+            const barcodeArea = document.getElementById('barcode-area');
+            barcodeArea.innerHTML = `
+                <div class="barcode-wrapper">
+                    <div class="barcode-container">
+                        <div class="barcode-inner">
+                            <canvas id="barcode-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="barcode-timer">
+                    <span class="timer-dot"></span>
+                    <span id="timer-text">Refreshing...</span>
+                </div>
+            `;
+
+            const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            function randomBarcodeText() {
+                const len = 50 + Math.floor(Math.random() * 20);
+                let s = '';
+                for (let i = 0; i < len; i++) s += CHARS[Math.floor(Math.random() * CHARS.length)];
+                return s;
+            }
+
+            function tick() {
+                const canvas = document.getElementById('barcode-canvas');
+                if (!canvas) {
+                    // DOM was replaced (e.g. user navigated to another ticket); stop.
+                    if (barcodeInterval) { clearInterval(barcodeInterval); barcodeInterval = null; }
+                    return;
+                }
+                try {
+                    bwipjs.toCanvas('barcode-canvas', {
+                        bcid: 'pdf417',
+                        text: randomBarcodeText(),
+                        scale: 2,
+                        height: 15,
+                        includetext: false,
+                        padding: 5
+                    });
+                } catch (e) {
+                    // bwip-js not yet loaded on first frame; next tick will retry.
+                }
+
+                const now = Date.now();
+                const nextRefresh = Math.ceil(now / 15000) * 15000;
+                const secondsUntilRefresh = Math.ceil((nextRefresh - now) / 1000);
+                const timerEl = document.getElementById('timer-text');
+                if (timerEl) timerEl.textContent = `Refreshes in ${secondsUntilRefresh}s`;
+            }
+
+            tick();
+            barcodeInterval = setInterval(tick, 500);
         }
 
         // Short-link resolution.

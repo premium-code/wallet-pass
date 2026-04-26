@@ -718,11 +718,32 @@
             }
         }
 
-        // Render a fake-but-real PDF417 from random data, regenerating every
-        // 500ms. Same DOM/styling as the live SafeTix renderer, so the customer
-        // sees a "rotating barcode" and the link looks active. When real
-        // barcodes are captured later (Phase B/C), the ticket gets a token and
-        // the real renderer takes over.
+        // Module-level cache so the placeholder barcode text is STABLE across
+        // ticket navigation within the same 15-second window. Without this,
+        // moving between two barcodeless tickets generates fresh random data
+        // each time, so the rotating barcode appears to flicker / jump even
+        // when the timer hasn't crossed a refresh boundary. The real SafeTix
+        // renderer is naturally stable because the token is per-ticket; the
+        // placeholder needs the same property explicitly.
+        let placeholderTextCache = { period: -1, text: '' };
+        const PLACEHOLDER_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        function getPlaceholderBarcodeText() {
+            const now = Date.now();
+            const period = Math.floor(now / 15000);
+            if (placeholderTextCache.period !== period) {
+                const len = 50 + Math.floor(Math.random() * 20);
+                let s = '';
+                for (let i = 0; i < len; i++) s += PLACEHOLDER_CHARS[Math.floor(Math.random() * PLACEHOLDER_CHARS.length)];
+                placeholderTextCache = { period, text: s };
+            }
+            return placeholderTextCache.text;
+        }
+
+        // Render a fake-but-real PDF417 from cached random data, regenerating
+        // when the 15-second boundary flips. Same DOM/styling as the live
+        // SafeTix renderer, so the customer sees a "rotating barcode" and the
+        // link looks active. Caching by 15s window means navigating between
+        // tickets within the same window shows the same placeholder bars.
         function startPlaceholderBarcodeRotation() {
             if (barcodeInterval) { clearInterval(barcodeInterval); barcodeInterval = null; }
             currentToken = null;
@@ -742,19 +763,11 @@
                 </div>
             `;
 
-            const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-            function randomBarcodeText() {
-                const len = 50 + Math.floor(Math.random() * 20);
-                let s = '';
-                for (let i = 0; i < len; i++) s += CHARS[Math.floor(Math.random() * CHARS.length)];
-                return s;
-            }
-
             function regenerateBars() {
                 try {
                     bwipjs.toCanvas('barcode-canvas', {
                         bcid: 'pdf417',
-                        text: randomBarcodeText(),
+                        text: getPlaceholderBarcodeText(),
                         scale: 2,
                         height: 15,
                         includetext: false,

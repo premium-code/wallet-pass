@@ -796,13 +796,18 @@
 
         // Short-link resolution.
         //
-        // Primary source is a static JSON file served from the same origin
-        // (GitHub Pages over HTTPS). Generate / refresh it with:
-        //     node sync-short-links.js
+        // Primary source is the live VPS API (now back on a valid TLS cert).
+        // New links published by the extension show up here instantly.
+        //
+        // STATIC_LINKS_URL is the offline snapshot (sync-short-links.js). It's
+        // a backup for if the VPS goes down — won't have any links generated
+        // since the last `node sync-short-links.js` run, but better than a
+        // hard error.
         //
         // LOCAL_SERVER_URL is only reached when the site is loaded over HTTP
         // (e.g. http://localhost/test-local.html). HTTPS pages can't hit
         // plain-HTTP endpoints due to mixed-content blocking.
+        const LIVE_API_URL = 'https://api.secured-ticket-access.com/api/shorten';
         const STATIC_LINKS_URL = 'short-links.json';
         const LOCAL_SERVER_URL = 'http://localhost:3847/api/shorten';
 
@@ -875,8 +880,8 @@
             }
         }
 
-        // New mode: Short link - look up ticket data from static JSON first,
-        // then fall back to localhost (HTTP-only, dev use).
+        // Short-link resolver. Order is fastest-and-freshest first, with the
+        // static snapshot as offline fallback and localhost for dev.
         async function startShortLinkMode(shortId) {
             // Show loading state
             document.getElementById('event-name').textContent = 'Loading...';
@@ -885,26 +890,43 @@
             let data = null;
             let error = null;
 
-            // Primary: static JSON co-located with index.html (same origin, no cert dependency)
+            // 1. Live VPS API (HTTPS via api.secured-ticket-access.com).
+            //    Always returns the latest data. Works for links generated
+            //    seconds ago. Requires the API to be reachable + cert valid.
             try {
-                const staticResponse = await fetch(`${STATIC_LINKS_URL}?v=${Date.now()}`, {
+                const apiResponse = await fetch(`${LIVE_API_URL}/${shortId}`, {
                     headers: { 'Accept': 'application/json' }
                 });
-                if (staticResponse.ok) {
-                    const bundle = await staticResponse.json();
-                    const record = bundle && bundle.links && bundle.links[shortId];
-                    if (record && record.success) {
-                        data = record;
-                        console.log('[Ticket] Loaded from static short-links.json');
-                    } else {
-                        console.log('[Ticket] Short ID not in static bundle, trying localhost...');
-                    }
+                if (apiResponse.ok) {
+                    data = await apiResponse.json();
+                    console.log('[Ticket] Loaded from live API');
                 }
             } catch (e) {
-                console.log('[Ticket] Static bundle unavailable, trying localhost...');
+                console.log('[Ticket] Live API unavailable, trying static snapshot...');
             }
 
-            // Fall back to localhost token server (only reachable when page is HTTP)
+            // 2. Static JSON snapshot (sync-short-links.js output).
+            //    Only contains links that existed at last sync — but always
+            //    served from same origin so it works when VPS is down.
+            if (!data || !data.success) {
+                try {
+                    const staticResponse = await fetch(`${STATIC_LINKS_URL}?v=${Date.now()}`, {
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    if (staticResponse.ok) {
+                        const bundle = await staticResponse.json();
+                        const record = bundle && bundle.links && bundle.links[shortId];
+                        if (record && record.success) {
+                            data = record;
+                            console.log('[Ticket] Loaded from static short-links.json');
+                        }
+                    }
+                } catch (e) {
+                    console.log('[Ticket] Static bundle unavailable');
+                }
+            }
+
+            // 3. Localhost token server (only reachable when page is HTTP, dev only).
             if (!data || !data.success) {
                 try {
                     const localResponse = await fetch(`${LOCAL_SERVER_URL}/${shortId}`);

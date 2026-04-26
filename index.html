@@ -651,9 +651,45 @@
 
             // Handle barcode/token
             if (ticket.token) {
+                // Rotating SafeTix (Ticketmaster) — re-renders every 15s.
                 startBarcodeRotation(ticket.token);
+            } else if (ticket.barcode) {
+                // Static barcode (Paciolan/evenue and similar) — render once.
+                renderStaticBarcode(ticket.barcode);
             } else {
+                // No token, no barcode: rotating placeholder or email-delivery message.
                 showBarcodeless(ticket);
+            }
+        }
+
+        // Render a single static PDF417 barcode (e.g. evenue's 14-digit numeric).
+        // Reuses the same card chrome as live SafeTix, minus the rotation timer.
+        function renderStaticBarcode(barcodeText) {
+            if (barcodeInterval) { clearInterval(barcodeInterval); barcodeInterval = null; }
+            currentToken = null;
+
+            const barcodeArea = document.getElementById('barcode-area');
+            barcodeArea.innerHTML = `
+                <div class="barcode-wrapper">
+                    <div class="barcode-container">
+                        <div class="barcode-inner">
+                            <canvas id="barcode-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            try {
+                bwipjs.toCanvas('barcode-canvas', {
+                    bcid: 'pdf417',
+                    text: String(barcodeText),
+                    scale: 2,
+                    height: 15,
+                    includetext: false,
+                    padding: 5
+                });
+            } catch (e) {
+                console.error('Static barcode render failed:', e);
             }
         }
 

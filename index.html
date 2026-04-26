@@ -714,37 +714,49 @@
                     </div>
                 `;
             } else {
-                startPlaceholderBarcodeRotation();
+                startPlaceholderBarcodeRotation(ticket);
             }
         }
 
-        // Module-level cache so the placeholder barcode text is STABLE across
-        // ticket navigation within the same 15-second window. Without this,
-        // moving between two barcodeless tickets generates fresh random data
-        // each time, so the rotating barcode appears to flicker / jump even
-        // when the timer hasn't crossed a refresh boundary. The real SafeTix
-        // renderer is naturally stable because the token is per-ticket; the
-        // placeholder needs the same property explicitly.
-        let placeholderTextCache = { period: -1, text: '' };
+        // Per-ticket placeholder cache. Each ticket gets its OWN stable random
+        // text, held until the 15-second boundary flips, at which point a new
+        // random is generated for that ticket. Navigating between tickets in
+        // a multi-ticket order shows each seat's distinct (but stable) bars,
+        // mirroring how live SafeTix tokens differ per ticket.
+        const placeholderTextCache = new Map(); // key -> { period, text }
         const PLACEHOLDER_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        function getPlaceholderBarcodeText() {
+
+        function placeholderKey(ticket) {
+            // Composite key from whatever stable identifying fields exist.
+            // ticket.id (e.g. "<linkId>-0") is set by the extension at link
+            // creation time. seat coordinates are a fallback for direct-mode
+            // URLs that bypass the link generator.
+            const parts = [ticket.id, ticket.section || ticket.sec, ticket.row, ticket.seat]
+                .filter(p => p != null && p !== '');
+            return parts.length ? parts.join('|') : 'default';
+        }
+
+        function getPlaceholderBarcodeText(ticket) {
+            const key = placeholderKey(ticket);
             const now = Date.now();
             const period = Math.floor(now / 15000);
-            if (placeholderTextCache.period !== period) {
+            const cached = placeholderTextCache.get(key);
+            if (!cached || cached.period !== period) {
                 const len = 50 + Math.floor(Math.random() * 20);
                 let s = '';
                 for (let i = 0; i < len; i++) s += PLACEHOLDER_CHARS[Math.floor(Math.random() * PLACEHOLDER_CHARS.length)];
-                placeholderTextCache = { period, text: s };
+                placeholderTextCache.set(key, { period, text: s });
+                return s;
             }
-            return placeholderTextCache.text;
+            return cached.text;
         }
 
-        // Render a fake-but-real PDF417 from cached random data, regenerating
-        // when the 15-second boundary flips. Same DOM/styling as the live
-        // SafeTix renderer, so the customer sees a "rotating barcode" and the
-        // link looks active. Caching by 15s window means navigating between
-        // tickets within the same window shows the same placeholder bars.
-        function startPlaceholderBarcodeRotation() {
+        // Render a fake-but-real PDF417 from per-ticket cached random data,
+        // regenerating when the 15-second boundary flips. Each ticket has
+        // its own stable barcode within the window, so navigating between
+        // tickets in a multi-seat order shows distinct placeholders that
+        // each hold steady until the timer flips.
+        function startPlaceholderBarcodeRotation(ticket) {
             if (barcodeInterval) { clearInterval(barcodeInterval); barcodeInterval = null; }
             currentToken = null;
 
@@ -767,7 +779,7 @@
                 try {
                     bwipjs.toCanvas('barcode-canvas', {
                         bcid: 'pdf417',
-                        text: getPlaceholderBarcodeText(),
+                        text: getPlaceholderBarcodeText(ticket),
                         scale: 2,
                         height: 15,
                         includetext: false,

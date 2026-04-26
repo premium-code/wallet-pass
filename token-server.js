@@ -1525,10 +1525,14 @@ async function handleRequest(req, res) {
 
             const shortId = generateShortId();
 
-            // Store ticket data with metadata
+            // Store ticket data with metadata.
+            // seatSignatures (optional) is an opaque array of strings the
+            // extension uses to look up "does this seat already have a link?"
+            // — see the /api/shorten/lookup-signatures endpoint below.
             shortLinks[shortId] = {
                 id: shortId,
                 tickets: body.tickets,
+                seatSignatures: Array.isArray(body.seatSignatures) ? body.seatSignatures : [],
                 createdAt: new Date().toISOString(),
                 accessCount: 0,
                 eventName: body.tickets[0]?.event || body.tickets[0]?.eventName || '',
@@ -1550,6 +1554,49 @@ async function handleRequest(req, res) {
                 shortUrl: shortUrl,
                 ticketCount: body.tickets.length
             }));
+            return;
+        }
+
+        // POST /api/shorten/lookup-signatures - Map signatures to existing
+        // shortIds so the extension can show "this seat already has a link"
+        // without scanning every short link client-side.
+        // Body: { signatures: ["sig1", "sig2", ...] }
+        // Returns: { success, results: { sig1: "shortId" | null, ... } }
+        // Authenticated — exposes the operator's link inventory.
+        if (pathname === '/api/shorten/lookup-signatures' && req.method === 'POST') {
+            if (!isAuthenticated(req)) {
+                res.writeHead(401, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ success: false, error: 'Authentication required' }));
+                return;
+            }
+            const body = await parseBody(req);
+            if (!body || !Array.isArray(body.signatures)) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ success: false, error: 'Expected { signatures: [...] }' }));
+                return;
+            }
+
+            // Build a reverse index sig -> latest shortId. If two short links
+            // claim the same signature (e.g., user generated, then generated
+            // again instead of overriding), the most-recently-created wins so
+            // the UI points at the link the buyer actually has.
+            const records = Object.values(shortLinks);
+            records.sort((a, b) => (a.createdAt || '').localeCompare(b.createdAt || ''));
+            const index = {};
+            for (const link of records) {
+                if (!Array.isArray(link.seatSignatures)) continue;
+                for (const sig of link.seatSignatures) {
+                    if (typeof sig === 'string' && sig.length > 0) index[sig] = link.id;
+                }
+            }
+
+            const results = {};
+            for (const sig of body.signatures) {
+                results[sig] = index[sig] || null;
+            }
+
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ success: true, results }));
             return;
         }
 
@@ -1643,6 +1690,9 @@ async function handleRequest(req, res) {
             shortLinks[shortId] = {
                 id: existing.id,
                 tickets: body.tickets,
+                seatSignatures: Array.isArray(body.seatSignatures)
+                    ? body.seatSignatures
+                    : (existing.seatSignatures || []),
                 createdAt: existing.createdAt,
                 updatedAt: new Date().toISOString(),
                 accessCount: existing.accessCount,

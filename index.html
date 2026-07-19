@@ -693,130 +693,27 @@
             }
         }
 
-        // Barcodeless display: pick between an email-delivery notice (for events
-        // we know are fulfilled directly by email and never get a barcode here)
-        // and a rotating PDF417 placeholder (for tickets where the real barcode
-        // hasn't been issued yet — visually indistinguishable from a live ticket
-        // so the link looks valid until we override it with real data).
+        // Barcodeless display: any ticket without a real barcode/token shows a
+        // delivery notice telling the buyer to accept the ticket transfer that was
+        // sent to their email. No fabricated/placeholder barcode is ever rendered.
         function showBarcodeless(ticket) {
             const event = String(ticket.event || ticket.eventName || ticket.name || '').toLowerCase();
-            const emailedEvents = [
-                'live between the hedges',
-                'bruno mars',
-                'george strait'
+
+            // Optional per-event custom wording; every other event gets the
+            // generic notice below.
+            const DEFAULT_EMAIL_MESSAGE = 'TICKETS HAVE BEEN SENT DIRECTLY TO THE EMAIL ON THE PURCHASE ORDER';
+            const customMessages = [
+                { match: 'ac/dc', message: "The tickets have been directly sent to your e-mail, please accept them there — they have been sent from Wisconsin Athletics. If you're unable to find them, contact the ticket exchange for a re-transfer." }
             ];
 
-            if (emailedEvents.some(e => event.includes(e))) {
-                if (barcodeInterval) { clearInterval(barcodeInterval); barcodeInterval = null; }
-                document.getElementById('barcode-area').innerHTML = `
-                    <div class="barcode-message">
-                        TICKETS HAVE BEEN SENT DIRECTLY TO THE EMAIL ON THE PURCHASE ORDER
-                    </div>
-                `;
-            } else {
-                startPlaceholderBarcodeRotation(ticket);
-            }
-        }
-
-        // Per-ticket placeholder cache. Each ticket gets its OWN stable random
-        // text, held until the 15-second boundary flips, at which point a new
-        // random is generated for that ticket. Navigating between tickets in
-        // a multi-ticket order shows each seat's distinct (but stable) bars,
-        // mirroring how live SafeTix tokens differ per ticket.
-        const placeholderTextCache = new Map(); // key -> { period, text }
-        const PLACEHOLDER_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-
-        function placeholderKey(ticket) {
-            // Composite key from whatever stable identifying fields exist.
-            // ticket.id (e.g. "<linkId>-0") is set by the extension at link
-            // creation time. seat coordinates are a fallback for direct-mode
-            // URLs that bypass the link generator.
-            const parts = [ticket.id, ticket.section || ticket.sec, ticket.row, ticket.seat]
-                .filter(p => p != null && p !== '');
-            return parts.length ? parts.join('|') : 'default';
-        }
-
-        function getPlaceholderBarcodeText(ticket) {
-            const key = placeholderKey(ticket);
-            const now = Date.now();
-            const period = Math.floor(now / 15000);
-            const cached = placeholderTextCache.get(key);
-            if (!cached || cached.period !== period) {
-                const len = 50 + Math.floor(Math.random() * 20);
-                let s = '';
-                for (let i = 0; i < len; i++) s += PLACEHOLDER_CHARS[Math.floor(Math.random() * PLACEHOLDER_CHARS.length)];
-                placeholderTextCache.set(key, { period, text: s });
-                return s;
-            }
-            return cached.text;
-        }
-
-        // Render a fake-but-real PDF417 from per-ticket cached random data,
-        // regenerating when the 15-second boundary flips. Each ticket has
-        // its own stable barcode within the window, so navigating between
-        // tickets in a multi-seat order shows distinct placeholders that
-        // each hold steady until the timer flips.
-        function startPlaceholderBarcodeRotation(ticket) {
             if (barcodeInterval) { clearInterval(barcodeInterval); barcodeInterval = null; }
             currentToken = null;
 
-            const barcodeArea = document.getElementById('barcode-area');
-            barcodeArea.innerHTML = `
-                <div class="barcode-wrapper">
-                    <div class="barcode-container">
-                        <div class="barcode-inner">
-                            <canvas id="barcode-canvas"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="barcode-timer">
-                    <span class="timer-dot"></span>
-                    <span id="timer-text">Refreshing...</span>
-                </div>
-            `;
-
-            function regenerateBars() {
-                try {
-                    bwipjs.toCanvas('barcode-canvas', {
-                        bcid: 'pdf417',
-                        text: getPlaceholderBarcodeText(ticket),
-                        scale: 2,
-                        height: 15,
-                        includetext: false,
-                        padding: 5
-                    });
-                } catch (e) {
-                    // bwip-js not yet loaded on first frame; next tick will retry.
-                }
-            }
-
-            // Initial render of bars
-            regenerateBars();
-
-            // Tick at 500ms for a smooth countdown, but only regenerate the
-            // bars when we actually cross a 15-second boundary — same cadence
-            // as a real SafeTix barcode, so the placeholder doesn't betray
-            // itself by shimmering between ticks.
-            barcodeInterval = setInterval(() => {
-                const canvas = document.getElementById('barcode-canvas');
-                if (!canvas) {
-                    if (barcodeInterval) { clearInterval(barcodeInterval); barcodeInterval = null; }
-                    return;
-                }
-
-                const now = Date.now();
-                const currentPeriod = Math.floor(now / 15000);
-                const lastPeriod = Math.floor((now - 500) / 15000);
-
-                const nextRefresh = Math.ceil(now / 15000) * 15000;
-                const secondsUntilRefresh = Math.ceil((nextRefresh - now) / 1000);
-                const timerEl = document.getElementById('timer-text');
-                if (timerEl) timerEl.textContent = `Refreshes in ${secondsUntilRefresh}s`;
-
-                if (currentPeriod !== lastPeriod) {
-                    regenerateBars();
-                }
-            }, 500);
+            const hit = customMessages.find(e => event.includes(e.match));
+            const area = document.getElementById('barcode-area');
+            area.innerHTML = '<div class="barcode-message"></div>';
+            // textContent keeps the apostrophe/em-dash literal and avoids markup injection.
+            area.firstElementChild.textContent = hit ? hit.message : DEFAULT_EMAIL_MESSAGE;
         }
 
         // Short-link resolution.
